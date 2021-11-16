@@ -1,0 +1,36 @@
+.input {
+    border: none;
+    padding: 12px 20px;
+    margin: 3px 0;
+    background-color: var(--wur-licht-grijs);
+    height: 24px;
+    font-size: 18px;
+    display: block;
+    border: 3px solid var(--wur-licht-grijs);
+}
+
+.length-short {
+    width: 290px;
+}
+
+.length-medium {
+    width: 580px;
+}
+
+.input::placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+.input::-ms-input-placeholder {
+    color: black;
+    opacity: 0.7;
+}
+
+.input-label {
+    margin: 0;
+}
+
+.input:focus {
+    border: 3px solid var(--wur-zwart);
+}

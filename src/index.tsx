@@ -1,5 +1,4 @@
 import React from 'react';
-import App from './App';
 import ReactDOM from 'react-dom';
 import './index.css';
 import EmployeeList from './pages/employee_list';

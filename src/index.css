@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0 10%;
   /* flex-direction: column; */
 }
 
@@ -20,5 +19,58 @@ code {
   --wur-groen: #34B233;
   --wur-button-hover: #007C00;
   --wur-wit: #FFFFFF;
-  --wur-grijs: #A59D95
+  --wur-grijs: #A59D95;
+  --wur-zwart: #000000;
+  --wur-licht-grijs: #D5D2CA;
+}
+
+/* Headings */
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 61px;
+  color: var(--wur-zwart);
+}
+
+h2 {
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 40px;
+  line-height: 48.61px;
+  color: var(--wur-groen);
+}
+
+h3 {
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--wur-zwart);
+}
+
+h4 {
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--wur-zwart);
+}
+
+h5 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: var(--wur-zwart);
+}
+
+/* Input velden */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

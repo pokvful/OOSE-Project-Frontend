@@ -4,18 +4,15 @@ import './Button.css';
 interface Props {
     title: String,
     disabled: boolean
+    onClick: React.MouseEventHandler<HTMLButtonElement>,
 }
 
-function Button({ title, disabled }: Props ) {
+function Button({ title, disabled, onClick }: Props ) {
 
     const classNameString = "button"
 
-    const buttonClick = () => {
-        console.log("Button click")
-    }
-
     return (
-        <button disabled={disabled} className={classNameString + ` button-${disabled ? "disabled" : "enabled"}`} onClick={() => buttonClick()}>
+        <button disabled={disabled} className={classNameString + ` button-${disabled ? "disabled" : "enabled"}`} onClick={onClick}>
             {title}
         </button>
     );
