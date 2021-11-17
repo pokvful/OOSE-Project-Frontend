@@ -1,0 +1,50 @@
+.table-row {
+    background-color: var(--wur-licht-grijs);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding: 12px 20px;
+    column-gap: 2rem;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.edit {
+    background-color: var(--wur-blauw);
+}
+
+.edit:hover {
+    background-color: var(--wur-blauw-hover);
+}
+
+.trash {
+    background-color: var(--wur-rood);
+}
+
+.trash:hover {
+    background-color: var(--wur-rood-hover);
+}
+
+.table-row-button {
+    width: 48px;
+    height: 48px;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-row-icon {
+    width: 20px;
+    height: 20px;
+}

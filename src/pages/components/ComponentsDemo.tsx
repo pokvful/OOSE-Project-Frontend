@@ -2,20 +2,14 @@ import React, { useState } from "react";
 import Button from "../../components/button/Button";
 import CloseModalButton from "../../components/closebutton/CloseModalButton";
 import Input from "../../components/input/Input";
+import Searchbar from "../../components/searchbar/Searchbar";
 import Select from "../../components/select/Select";
+import TableRow from "../../components/tablerow/TableRow";
 import './ComponentsDemo.css';
 
 function Components() {
 
     const [disabled, setDisabled] = useState(true);
-
-    const disableButton = () => {
-        if (disabled) {
-            setDisabled(false)
-        } else {
-            setDisabled(true)
-        }
-    }
 
     const buttonClick = () => {
         console.log("Click")
@@ -31,7 +25,7 @@ function Components() {
             <h2>Components</h2>
 
             <h3>Enabled</h3>
-            <Button title="Disable button" disabled={false} onClick={disableButton}/>
+            <Button title="Disable button" disabled={false} onClick={() => setDisabled(!disabled)}/>
             <h3>Disabled</h3>
             <Button title="Test" disabled={disabled} onClick={buttonClick}/>
 
@@ -51,6 +45,14 @@ function Components() {
             <br/>
             
             <CloseModalButton onClick={closeModal}/>
+
+            <br/>
+
+            <TableRow title={"McDonald's"} subtitle="Nijmegen" onEditClick={() => console.log("edit")} onDeleteClick={() => console.log("delete")}/>
+
+            <br/>
+
+            <Searchbar placeholderText={"zoeken"} inputName="searchbar" onClick={() => console.log("search")}/>
 
             <br/>
             
