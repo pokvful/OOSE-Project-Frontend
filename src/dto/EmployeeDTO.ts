@@ -1,12 +1,10 @@
 class EmployeeDTO {
-    id: number
-    firstName: string
-    lastName: string
+    id: number = 0;
+    firstName: string = "";
+    lastName: string = "";
 
-    constructor(id: number, firstName: string, lastName: string) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(employeeDTO?: EmployeeDTO) {
+        Object.assign(this, employeeDTO);
     }
 
 }

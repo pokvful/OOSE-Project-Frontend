@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react';
 import EmployeeService from '../../services/EmployeeService';
 import EmployeeDTO from '../../dto/EmployeeDTO';
 import { useNavigate, useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
-
+import Input from '../../components/input/Input';
 
 const EmployeeEdit : React.FC = () => {
   const [employee, setEmployee] = useState({} as EmployeeDTO);
@@ -17,10 +16,6 @@ const EmployeeEdit : React.FC = () => {
   let errors = {};
 
   const onSubmit = (e: any) => {
-    const vals = getValues();
-    employee.firstName = vals.firstName;
-    employee.lastName = vals.lastName;
-    employee.id = vals.id;
     if(!isEdit) {
       service.create(employee)
       .then(() => {
@@ -39,23 +34,15 @@ const EmployeeEdit : React.FC = () => {
     }
   }
 
-  const { register, handleSubmit, reset, setValue, getValues } = useForm<EmployeeDTO>();
-
   useEffect(() => {
     const employeeService = new EmployeeService();
     setService(employeeService)
     if(!isEdit) {
-      setValue("id", 0);
-      setValue("firstName", "");
-      setValue("lastName", "");
-      setEmployee(new EmployeeDTO(0, "", ""))
+      setEmployee(new EmployeeDTO())
     }
     else {
       employeeService.loadOne(id)
       .then(val => {
-        setValue("id", val.id);
-        setValue("firstName", val.firstName);
-        setValue("lastName", val.lastName);
         setEmployee(val);
       })
     }
@@ -64,14 +51,16 @@ const EmployeeEdit : React.FC = () => {
   const id: number = Number.parseInt(params.id === undefined ? "0" : params!.id);
   const isEdit: boolean = id !== 0;
 
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setEmployee({...employee, [e.target.id]: e.target.value})
+  }
+
   return (
     <div className="Employee">
       <h1>{isEdit ? employee.firstName + " wijzigen" : "Medewerker aanmaken"}</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="firstName">Voornaam</label>
-        <input type="text" {...register('firstName')}></input>
-        <label htmlFor="lastName">Achternaam</label>
-        <input type="text" {...register('lastName')}></input>
+      <form onSubmit={onSubmit}>
+        <Input placeholderText={'Voornaam'} inputName={'firstName'} inputType={'text'} inputLabel={'Voornaam'} onChange={handleChange} value={employee.firstName}/>
+        <Input placeholderText={'Achternaam'} inputName={'lastName'} inputType={'text'} inputLabel={'Achternaam'} onChange={handleChange} value={employee.lastName}/>
         <input type="submit" value={isEdit ? "Wijzig" : "Maak"} className="edit-button"></input>
       </form>
     </div>

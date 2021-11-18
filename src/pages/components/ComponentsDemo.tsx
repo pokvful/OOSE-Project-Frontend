@@ -36,8 +36,8 @@ function Components() {
             <h5>Heading 5</h5>
 
             {/* Default voor inputLength is short, specificeer alleen als je een andere grootte wil */}
-            <Input placeholderText="placeholder text" inputName="name-label" inputType="text" inputLabel="Label"/>
-            <Input placeholderText="placeholder text" inputName="name-label" inputType="text" inputLength="medium" inputLabel="Label"/>
+            {/* <Input placeholderText="placeholder text" inputName="name-label" inputType="text" inputLabel="Label"/>
+            <Input placeholderText="placeholder text" inputName="name-label" inputType="text" inputLength="medium" inputLabel="Label"/> */}
 
             {/* De placeholder wordt als eerste optie weergegeven */}
             <Select placeholderText={"placeholder"} selectName={"name-label"} selectLabel={"Select"} options={["Optie 1", "Optie 2", "Optie 3"]}/>

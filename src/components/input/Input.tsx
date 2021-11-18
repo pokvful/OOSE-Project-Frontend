@@ -6,15 +6,17 @@ interface Props {
     inputName: string,
     inputLength?: string,
     inputType: string,
-    inputLabel: string
+    inputLabel: string,
+    onChange:any,
+    value:any
 }
 
-function Input({ placeholderText, inputName, inputLength = "short", inputType, inputLabel }: Props ) {
+function Input({ placeholderText, inputName, inputLength = "short", inputType, inputLabel,onChange,value }: Props ) {
 
     return (
         <div>
             <h4 className="input-label">{inputLabel}</h4>
-            <input className={"input length-" + inputLength} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."}/>
+            <input className={"input length-" + inputLength} onChange={onChange} value={value} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."}/>
         </div>
     );
 }

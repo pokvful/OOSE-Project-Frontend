@@ -9,7 +9,11 @@ class EmployeeService implements IService<EmployeeDTO> {
         .then(data => {
             let toReturn = [] as EmployeeDTO[];
             data.forEach((employee: any) => {
-                toReturn.push(new EmployeeDTO(employee.id, employee.firstName, employee.lastName))
+                let employeeDto: EmployeeDTO = new EmployeeDTO();
+                employeeDto.id = employee.id;
+                employeeDto.firstName = employee.firstName;
+                employeeDto.lastName = employee.lastName;
+                toReturn.push(employeeDto);
             });
 
             return toReturn;
@@ -19,7 +23,11 @@ class EmployeeService implements IService<EmployeeDTO> {
         return axios.get("http://localhost:8080/employees/" + id)
         .then(response => response.data)
         .then(employee => {
-           return new EmployeeDTO(employee.id, employee.firstName, employee.lastName)
+            let employeeDto: EmployeeDTO = new EmployeeDTO();
+            employeeDto.id = employee.id;
+            employeeDto.firstName = employee.firstName;
+            employeeDto.lastName = employee.lastName;
+           return employeeDto;
         });
     }
     update(value: EmployeeDTO): Promise<void> {
