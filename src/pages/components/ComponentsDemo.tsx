@@ -48,7 +48,7 @@ function Components() {
 
             <br/>
 
-            <TableRow title={"McDonald's"} subtitle="Nijmegen" onEditClick={() => console.log("edit")} onDeleteClick={() => console.log("delete")}/>
+            {/* <TableRow title={"McDonald's"} subtitle="Nijmegen" onEditClick={() => console.log("edit")} onDeleteClick={() => console.log("delete")}/> */}
 
             <br/>
 

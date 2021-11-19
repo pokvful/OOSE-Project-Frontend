@@ -3,6 +3,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.table-row-grey-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    --arrow-location: 2rem;
+}
+
+.table-row-grey-section:hover {
+    --arrow-location: 1rem;
+}
+
+.arrow-icon {
+    transition: 0.3s;
+    margin-right: var(--arrow-location);
 }
 
 .left-section {

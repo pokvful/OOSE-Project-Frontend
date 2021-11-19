@@ -3,11 +3,11 @@ import './Button.css';
 
 interface Props {
     title: String,
-    disabled: boolean,
+    disabled?: boolean,
     onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function Button({ title, disabled, onClick }: Props ) {
+function Button({ title, disabled = false, onClick }: Props ) {
 
     const classNameString = "button"
 

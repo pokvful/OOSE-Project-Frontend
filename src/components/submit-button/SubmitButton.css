@@ -1,22 +1,21 @@
-.button-enabled {
+.submit-button-enabled {
     background-color: var(--wur-groen);
 }
 
-button {
+.submit-button {
     padding:  0.4rem 1.5rem;
     transition: 0.4s;
     color: var(--wur-wit);
     font-size: 24px;
     border: none;
     cursor: pointer;
-    height: 40px;
 }
 
-.button-disabled {
+.submit-button-disabled {
     background-color: var(--wur-grijs);
     cursor: default;
 }
 
-.button-enabled:hover {
+.submit-button-enabled:hover {
     background-color: var(--wur-button-hover);
 }
