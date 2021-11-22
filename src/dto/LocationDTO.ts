@@ -1,4 +1,5 @@
 import AreaDTO from "./AreaDTO";
+import InterventionDTO from "./InterventionDTO";
 
 class LocationDTO {
     area: AreaDTO = new AreaDTO();
@@ -7,8 +8,8 @@ class LocationDTO {
     longitude: number = 0;
     name: string = "";
     radius: number = 0;
-    areaId: number = 0;
     delay: number = 0;
+    linkedInterventions : InterventionDTO[] = [];
 
     constructor(LocationDTO?: LocationDTO) {
         Object.assign(this, LocationDTO);

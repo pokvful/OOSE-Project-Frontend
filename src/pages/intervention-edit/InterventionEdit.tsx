@@ -52,14 +52,14 @@ const InterventionEdit : React.FC = () => {
   return (
     <div className="intervention-edit-add">
       <h2>{isEdit ? intervention.name + " Wijzigen" : "Interventie aanmaken"}</h2>
-      <form onSubmit={onSubmit}>
+      {/* <form onSubmit={onSubmit}>
         <Select placeholderText={'Type interventie'} selectName={'interventiontype'} selectLabel={''} options={["interventie"]}/>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={intervention.name}/>
         <br/>
         <Input placeholderText={'Commando'} inputName={'command'} inputType={'text'} inputLabel={'Commando'} onChange={handleChange} value={intervention.radius === 0 ? "" : intervention.radius}/>
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
-      </form>
+      </form> */}
     </div>
   );
 }

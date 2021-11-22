@@ -16,21 +16,18 @@ function LocationDetail() {
   const params = useParams();
 
   useEffect(() => {
+    const areaService = new AreaService();
     const locationService = new LocationService();
+    setAreaServiceState(areaService)
     setLocationServiceState(locationService)
     locationService.loadOne(id)
     .then(val => {
       setLocation(val);
-    })
-  }, [])
-
-  useEffect(() => {
-    const areaService = new AreaService();
-    setAreaServiceState(areaService)
+    });
     areaService.loadAll()
     .then(val => {
       setAreas(val);
-    })
+    });
   }, [])
 
   if(params.id === undefined) {
@@ -39,6 +36,10 @@ function LocationDetail() {
 
   const id: number = Number.parseInt(params.id);
 
+  if(!location || !location.area || !location.linkedInterventions) {
+    return null;
+  }
+
   return (
     <div className="location-detail">
       <DetailTopSection pageTitle={location.name} buttonTitle={'wijzigen'} navigationLink={'/locations/edit/' + location.locationId}/>
@@ -46,7 +47,7 @@ function LocationDetail() {
         <tbody>
           <tr>
             <td className="table-min-width">Gebied:</td>
-            <td>{areas[location.areaId].name}</td>
+            <td>{location.area.name}</td>
           </tr>
           <tr>
             <td className="table-min-width">Lengtegraad:</td>
@@ -66,7 +67,9 @@ function LocationDetail() {
           </tr>
         </tbody>
       </table>
-
+      {location.linkedInterventions.map(intervention => {
+        return <p id={intervention.id.toString()}>{intervention.name}</p>
+      })}
     </div>
   );
 }

@@ -14,10 +14,10 @@ class LocationService implements IService<LocationDTO> {
                 locationDto.area = location.area;
                 locationDto.latitude = location.latitude;
                 locationDto.longitude = location.longitude;
-                locationDto.name = location.name;
-                locationDto.areaId = location.areaId;
+                locationDto.name = location.location_name;
                 locationDto.radius = location.radius;
                 locationDto.delay = location.delay;
+                locationDto.linkedInterventions = location.linkedInterventions;
                 toReturn.push(locationDto);
             });
 
@@ -29,23 +29,31 @@ class LocationService implements IService<LocationDTO> {
         .then(response => response.data)
         .then(location => {
             let locationDto: LocationDTO = new LocationDTO();
+            let areaData = location.area;
+            let areaDTO: AreaDTO = new AreaDTO();
+            areaDTO.name = areaData.name;
+            areaDTO.id = areaData.id;
+            areaDTO.radius = areaData.radius;
+            areaDTO.longitude = areaData.longitude;
+            areaDTO.latitude = areaData.latitude;
             locationDto.locationId = location.locationId;
             locationDto.latitude = location.latitude;
             locationDto.longitude = location.longitude;
             locationDto.name = location.name;
-            locationDto.areaId = location.areaId;
             locationDto.radius = location.radius;   
             locationDto.delay = location.delay;
+            locationDto.linkedInterventions = location.linkedInterventions;
+            locationDto.area = Object.assign({}, areaDTO);
            return locationDto;
         });
     }
     update(value: LocationDTO): Promise<void> {
         return axios.put("http://localhost:8080/locations", value);
     }
-    create(value: LocationDTO): Promise<void> {
+    async create(value: LocationDTO): Promise<void> {
         return axios.post("http://localhost:8080/locations", value);
     }
-    delete(id: number): Promise<void> {
+    async delete(id: number): Promise<void> {
         return axios.delete("http://localhost:8080/locations/" + id);
     }
 }

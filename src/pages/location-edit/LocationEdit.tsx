@@ -7,9 +7,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
+import AreaDTO from '../../dto/AreaDTO';
+import InterventionDTO from '../../dto/InterventionDTO';
+import InterventionService from '../../services/InterventionService';
+import Select from '../../components/select/Select';
 
 const LocationEdit : React.FC = () => {
   const [location, setLocation] = useState({} as LocationDTO);
+  const [allInterventions, setAllInterventions] = useState([] as InterventionDTO[]);
   const [service, setService] = useState({} as LocationService);
   
   const params = useParams();
@@ -20,7 +25,6 @@ const LocationEdit : React.FC = () => {
 
     if(!isEdit) {
       const res = await service.create(location)
-        console.log(res)
         toast.success("Locatie aangemaakt!");
     } else {
       await service.update(location)
@@ -31,13 +35,22 @@ const LocationEdit : React.FC = () => {
 
   useEffect(() => {
     const locationService = new LocationService();
+    const interventionService = new InterventionService();
     setService(locationService)
+    interventionService
+      .loadAll()
+      .then(interventions => {
+        setAllInterventions(interventions);
+      })
     if(!isEdit) {
-      setLocation(new LocationDTO())
+      let locDTO: LocationDTO = new LocationDTO();
+      locDTO.area = new AreaDTO();
+      setLocation(locDTO)
     } else {
       locationService.loadOne(id)
       .then(val => {
         setLocation(val);
+        console.log(val);
       })
     }
   }, [])
@@ -49,32 +62,53 @@ const LocationEdit : React.FC = () => {
     setLocation({...location, [e.target.id]: e.target.value})
   }
 
+  const removeIntervention = (id:number) : void => {
+    const newLoc : LocationDTO = new LocationDTO(location);
+    newLoc.linkedInterventions = newLoc.linkedInterventions.filter(x => x.id !== id);
+
+    setLocation(newLoc);
+  }
+
+  const addIntervention = (e: FormEvent) : void => {
+    e.preventDefault();
+    var select = document.getElementById('new-intervention') as any;
+    var value = select.options[select.selectedIndex].value;;
+    const newLoc : LocationDTO = new LocationDTO(location);
+    newLoc.linkedInterventions.push(allInterventions.find(x => x.id === Number(value)) as InterventionDTO);
+
+    setLocation(newLoc);
+  }
+
+  if(!allInterventions || !location || !location.linkedInterventions) {
+    return null;
+  }
+
   return (
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <form onSubmit={onSubmit}>
-<<<<<<< HEAD
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name}/>
+        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={[]}/>
         <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude }/>
+        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude } errors={[]}/>
         <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude}/>
+        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude} errors={[]}/>
         <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius}/>
+        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius} errors={[]}/>
         <br/>
-        <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay}/>
-=======
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={[]}/>
-        <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude } errors={[]}/>
-        <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={[]}/>
-        <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={[]}/>
->>>>>>> 00d5c6bc30f3e7c93e554eb0158fb6a2fa326825
-        <br/>
-        <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
+        <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
+      {location.linkedInterventions.map(intervention => {
+        return <p>{intervention.name}</p>
+      })}
+      <form onSubmit={addIntervention}>
+        <select id="new-intervention">
+          {allInterventions.filter(x => location.linkedInterventions.find(y => y.id === x.id) === undefined).map(intervention => {
+            return <option value={intervention.id}>{intervention.name}</option>
+          })}
+        </select>
+        <SubmitButton value="Voeg toe"/>
+      </form>
+
     </div>
   );
 }
