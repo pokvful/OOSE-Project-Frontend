@@ -10,9 +10,15 @@ import SubmitButton from '../../components/submit-button/SubmitButton';
 import AreaDTO from '../../dto/AreaDTO';
 import InterventionDTO from '../../dto/InterventionDTO';
 import InterventionService from '../../services/InterventionService';
+import TableRow from '../../components/tablerow/TableRow';
+import AreaService from '../../services/AreaService';
+import Select from '../../components/select/Select';
+import Option from '../../components/select/Option';
 
 function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
+  const [selectedIntervention, setSelectedIntervention] = useState(0 as Number);
+  const [allAreas, setAllAreas] = useState([] as AreaDTO[]);
   const [allInterventions, setAllInterventions] = useState([] as InterventionDTO[]);
   const [service, setService] = useState({} as LocationService);
   const [errors, setErrors] = useState({} as any);
@@ -24,7 +30,7 @@ function LocationEdit() {
     e.preventDefault()
 
     if(!isEdit) {
-      const res = await service.create(location)
+      await service.create(location)
         .then(() => {
           toast.success("Locatie aangemaakt!");
           navigate("/locations");
@@ -48,11 +54,17 @@ function LocationEdit() {
   useEffect(() => {
     const locationService = new LocationService();
     const interventionService = new InterventionService();
+    const areaService = new AreaService();
     setService(locationService)
     interventionService
       .loadAll()
       .then(interventions => {
         setAllInterventions(interventions);
+      })
+    areaService
+      .loadAll()
+      .then(areas => {
+        setAllAreas(areas);
       })
     if(!isEdit) {
       let locDTO: LocationDTO = new LocationDTO();
@@ -62,7 +74,6 @@ function LocationEdit() {
       locationService.loadOne(id)
       .then(val => {
         setLocation(val);
-        console.log(val);
       })
     }
   }, [])
@@ -74,7 +85,15 @@ function LocationEdit() {
     setLocation({...location, [e.target.id]: e.target.value})
   }
 
-  const removeIntervention = (id:number) : void => {
+  const updateArea = (id:string) => {
+    setLocation({...location, "areaId": Number(id)});
+  }
+
+  const changeSelectedIntervention = (id:string) => {
+    setSelectedIntervention(Number(id));
+  }
+
+  const removeIntervention = (id:number) => {
     const newLoc : LocationDTO = new LocationDTO(location);
     newLoc.linkedInterventions = newLoc.linkedInterventions.filter(x => x.id !== id);
 
@@ -91,17 +110,24 @@ function LocationEdit() {
     setLocation(newLoc);
   }
 
-  if(!allInterventions || !location || !location.linkedInterventions) {
+  if(!allInterventions || !location || !location.linkedInterventions || !allAreas) {
     return null;
   }
 
   return (
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
+      <div className="row">
       <form onSubmit={onSubmit}>
           <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
           <br/>
-          <Input placeholderText={'Gebied'} inputName={'areaId'} inputType={'text'} inputLabel={'Gebied'} onChange={handleChange} value={location.area.name} errors={errors.areaId}/>
+          <Select placeholderText={'Kies een gebied'} value={location.areaId.toString()} selectName={'areaId'} selectLabel={'Gebied'} onChange={updateArea} options={allAreas.map(x => {
+            let option = new Option();
+            option.id = x.id.toString();
+            option.name = x.name;
+
+            return option;
+          })}/>
           <br/>
           <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude} errors={errors.longitude}/>
           <br/>
@@ -113,18 +139,28 @@ function LocationEdit() {
           <br/>
           <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
-      {location.linkedInterventions.map(intervention => {
-        return <p>{intervention.name}</p>
-      })}
-      <form onSubmit={addIntervention}>
-        <select id="new-intervention">
-          {allInterventions.filter(x => location.linkedInterventions.find(y => y.id === x.id) === undefined).map(intervention => {
-            return <option value={intervention.id}>{intervention.name}</option>
-          })}
-        </select>
-        <SubmitButton value="Voeg toe"/>
-      </form>
+      <div className="column interventions">
+        <form className="row" onSubmit={addIntervention}>
+          <Select 
+            placeholderText={'Kies een interventie'} 
+            selectName={'new-intervention'} 
+            onChange={changeSelectedIntervention} 
+            selectLabel={'Voeg interventie toe'} 
+            value={selectedIntervention.toString()}
+            options={allInterventions.filter(x => location.linkedInterventions.find(y => y.id === x.id) === undefined).map(intervention => {
+              let option = new Option();
+              option.id = intervention.id.toString();
+              option.name = intervention.name;
 
+              return option;
+            })} />
+          <SubmitButton value="Voeg toe"/>
+        </form>
+        {location.linkedInterventions.map(intervention => {
+          return <TableRow title={intervention.name} onDeleteClick={() => removeIntervention(intervention.id)} />
+        })}
+        </div>
+      </div>
     </div>
   );
 }

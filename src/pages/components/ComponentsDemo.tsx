@@ -3,6 +3,7 @@ import Button from "../../components/button/Button";
 import CloseModalButton from "../../components/closebutton/CloseModalButton";
 import Input from "../../components/input/Input";
 import Searchbar from "../../components/searchbar/Searchbar";
+import Option from "../../components/select/Option";
 import Select from "../../components/select/Select";
 import TableRow from "../../components/tablerow/TableRow";
 import './ComponentsDemo.css';
@@ -40,7 +41,7 @@ function Components() {
             <Input placeholderText="placeholder text" inputName="name-label" inputType="text" inputLength="medium" inputLabel="Label"/> */}
 
             {/* De placeholder wordt als eerste optie weergegeven */}
-            <Select placeholderText={"placeholder"} selectName={"name-label"} selectLabel={"Select"} options={["Optie 1", "Optie 2", "Optie 3"]}/>
+            <Select placeholderText={"placeholder"} selectName={"name-label"} onChange={() => {}}selectLabel={"Select"} options={["Optie 1", "Optie 2", "Optie 3"].map(x => {let option = new Option(); option.id = x; option.name = x; return option; })}/>
 
             <br/>
             

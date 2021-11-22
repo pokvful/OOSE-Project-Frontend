@@ -2,6 +2,7 @@ import axios from "axios";
 import AreaDTO from "../../dto/AreaDTO";
 import LocationDTO from "../../dto/LocationDTO";
 import IService from "../IService";
+import LocationCreateRequestDTO from "./LocationCreateRequestDTO";
 import LocationUpdateRequestDTO from "./LocationUpdateRequestDTO";
 
 class LocationService implements IService<LocationDTO> {
@@ -20,6 +21,7 @@ class LocationService implements IService<LocationDTO> {
                 locationDto.radius = location.radius;
                 locationDto.delay = location.delay;
                 locationDto.linkedInterventions = location.linkedInterventions;
+                locationDto.areaId = locationDto.area.id;
                 toReturn.push(locationDto);
             });
 
@@ -46,6 +48,7 @@ class LocationService implements IService<LocationDTO> {
             locationDto.delay = location.delay;
             locationDto.linkedInterventions = location.linkedInterventions;
             locationDto.area = Object.assign({}, areaDTO);
+            locationDto.areaId = areaDTO.id;
            return locationDto;
         });
     }
@@ -53,7 +56,7 @@ class LocationService implements IService<LocationDTO> {
         return axios.put("http://localhost:8080/locations", new LocationUpdateRequestDTO(value));
     }
     async create(value: LocationDTO): Promise<void> {
-        return axios.post("http://localhost:8080/locations", value);
+        return axios.post("http://localhost:8080/locations", new LocationCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
         return axios.delete("http://localhost:8080/locations/" + id);

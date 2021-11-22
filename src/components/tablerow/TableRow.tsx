@@ -8,29 +8,31 @@ import ArrowIcon from '../../assets/icons/arrow.svg';
 interface Props {
     title: String,
     subtitle?: String,
-    navigationLink: string,
-    onEditLink: string,
+    navigationLink?: string,
+    onEditLink?: string,
     onDeleteClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function TableRow({ title, subtitle="", onEditLink, onDeleteClick, navigationLink }: Props ) {
+function TableRow({ title, subtitle="", onEditLink="", onDeleteClick, navigationLink="" }: Props ) {
 
     const navigate = useNavigate()
 
     return (
         <div className="table-row">
-            <div className="table-row-grey-section" onClick={() => navigate(navigationLink)}>
+            <div className="table-row-grey-section" onClick={() => (navigationLink !== "" ? navigate(navigationLink!) : {})}>
                 <div className="left-section">
                     <h4>{title}</h4>
                     <h5>{subtitle}</h5>
                 </div>
-                <img src={ArrowIcon} alt="pijl" className="arrow-icon"/>
+                {navigationLink !== "" && <img src={ArrowIcon} alt="pijl" className="arrow-icon"/>}
             </div>
 
             <div className="right-section">
-                <button className="edit table-row-button" onClick={() => navigate(onEditLink)}>
-                    <img className="table-row-icon" src={EditIcon} alt="wijzig" />
-                </button>
+                {onEditLink !== "" &&
+                    <button className="edit table-row-button" onClick={() => navigate(onEditLink)}>
+                        <img className="table-row-icon" src={EditIcon} alt="wijzig" />
+                    </button>
+                }
                 <button className="trash table-row-button" onClick={onDeleteClick}>
                     <img className="table-row-icon" src={TrashIcon} alt="verwijder" />
                 </button>
