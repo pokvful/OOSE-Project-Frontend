@@ -53,6 +53,7 @@ const LocationEdit : React.FC = () => {
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <form onSubmit={onSubmit}>
+<<<<<<< HEAD
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name}/>
         <br/>
         <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude }/>
@@ -62,6 +63,15 @@ const LocationEdit : React.FC = () => {
         <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius}/>
         <br/>
         <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay}/>
+=======
+        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={[]}/>
+        <br/>
+        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude } errors={[]}/>
+        <br/>
+        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={[]}/>
+        <br/>
+        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={[]}/>
+>>>>>>> 00d5c6bc30f3e7c93e554eb0158fb6a2fa326825
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
