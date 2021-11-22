@@ -11,6 +11,7 @@ import SubmitButton from '../../components/submit-button/SubmitButton';
 const AreaEdit : React.FC = () => {
   const [area, setArea] = useState({} as AreaDTO);
   const [service, setService] = useState({} as AreaService);
+  const [errors, setErrors] = useState({} as any);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -20,12 +21,22 @@ const AreaEdit : React.FC = () => {
 
     if(!isEdit) {
       await service.create(area)
-        toast.success("Gebied aangemaakt!");
+        .then(() => {
+          toast.success("Gebied aangemaakt!");
+        }).catch(err => {
+          return;
+        });
     } else {
-      await service.update(area)
-        toast.success("Gebied bijgewerkt!");
+      await service
+        .update(area)
+        .then(response => {
+          toast.success("Gebied bijgewerkt!");
+          navigate("/areas");
+        }).catch(err => {
+          setErrors(err.response.data);
+          return;
+        });
     }
-    navigate("/areas");
   }
 
   useEffect(() => {
@@ -52,13 +63,13 @@ const AreaEdit : React.FC = () => {
     <div className="area-edit-add">
       <h2>{isEdit ? area.name + " wijzigen" : "Gebied aanmaken"}</h2>
       <form onSubmit={onSubmit}>
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name}/>
+        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
         <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }/>
+        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }  errors={errors.longitude}/>
         <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude}/>
+        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={errors.latitude}/>
         <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius}/>
+        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
