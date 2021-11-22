@@ -1,31 +1,29 @@
 import './LocationDetail.css';
 import { useState, useEffect } from 'react';
-import LocationService from '../../services/LocationService';
+import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
-import AreaDTO from '../../dto/AreaDTO';
 import AreaService from '../../services/AreaService';
+import AreaDTO from '../../dto/AreaDTO';
 
 function LocationDetail() {
-  const [location, setLocation] = useState({} as LocationDTO);
+  const [location, setLocation] = useState<LocationDTO>();
   const [areas, setAreas] = useState([] as AreaDTO[]);
   const [locationServiceState, setLocationServiceState] = useState({} as LocationService);
-  const [areaServiceState, setAreaServiceState] = useState({} as AreaService);
 
   const params = useParams();
 
   useEffect(() => {
     const areaService = new AreaService();
     const locationService = new LocationService();
-    setAreaServiceState(areaService)
     setLocationServiceState(locationService)
     locationService.loadOne(id)
     .then(val => {
       setLocation(val);
     });
     areaService.loadAll()
-    .then(val => {
+    .then((val:any) => {
       setAreas(val);
     });
   }, [])
@@ -63,7 +61,7 @@ function LocationDetail() {
           </tr>
           <tr>
             <td className="table-min-width">Triggertijd:</td>
-            <td>{location.delay + location.delay > 1 ? " seconden" : " seconde"}</td>
+            <td>{location.delay + (location.delay > 1 ? " seconden" : " seconde")}</td>
           </tr>
         </tbody>
       </table>

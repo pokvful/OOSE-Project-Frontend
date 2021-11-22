@@ -1,7 +1,8 @@
 import axios from "axios";
-import AreaDTO from "../dto/AreaDTO";
-import LocationDTO from "../dto/LocationDTO";
-import IService from "./IService";
+import AreaDTO from "../../dto/AreaDTO";
+import LocationDTO from "../../dto/LocationDTO";
+import IService from "../IService";
+import LocationUpdateRequestDTO from "./LocationUpdateRequestDTO";
 
 class LocationService implements IService<LocationDTO> {
     async loadAll(): Promise<LocationDTO[]> {
@@ -12,9 +13,10 @@ class LocationService implements IService<LocationDTO> {
             data.forEach((location: any) => {
                 let locationDto: LocationDTO = new LocationDTO();
                 locationDto.area = location.area;
+                locationDto.locationId = location.locationId;
                 locationDto.latitude = location.latitude;
                 locationDto.longitude = location.longitude;
-                locationDto.name = location.location_name;
+                locationDto.name = location.name;
                 locationDto.radius = location.radius;
                 locationDto.delay = location.delay;
                 locationDto.linkedInterventions = location.linkedInterventions;
@@ -48,7 +50,7 @@ class LocationService implements IService<LocationDTO> {
         });
     }
     update(value: LocationDTO): Promise<void> {
-        return axios.put("http://localhost:8080/locations", value);
+        return axios.put("http://localhost:8080/locations", new LocationUpdateRequestDTO(value));
     }
     async create(value: LocationDTO): Promise<void> {
         return axios.post("http://localhost:8080/locations", value);

@@ -1,7 +1,7 @@
 import './LocationEdit.css';
-import '../../services/LocationService';
+import '../../services/location/LocationService';
 import { useState, useEffect, FormEvent } from 'react';
-import LocationService from '../../services/LocationService';
+import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -10,12 +10,12 @@ import SubmitButton from '../../components/submit-button/SubmitButton';
 import AreaDTO from '../../dto/AreaDTO';
 import InterventionDTO from '../../dto/InterventionDTO';
 import InterventionService from '../../services/InterventionService';
-import Select from '../../components/select/Select';
 
-const LocationEdit : React.FC = () => {
+function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
   const [allInterventions, setAllInterventions] = useState([] as InterventionDTO[]);
   const [service, setService] = useState({} as LocationService);
+  const [errors, setErrors] = useState({} as any);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -25,12 +25,24 @@ const LocationEdit : React.FC = () => {
 
     if(!isEdit) {
       const res = await service.create(location)
-        toast.success("Locatie aangemaakt!");
+        .then(() => {
+          toast.success("Locatie aangemaakt!");
+          navigate("/locations");
+        }).catch(err => {
+          setErrors(err.response.data);
+          console.log(err.response.data)
+          return;
+        });
     } else {
       await service.update(location)
+      .then(() => {
         toast.success("Locatie bijgewerkt!");
+        navigate("/locations");
+      }).catch(err => {
+        setErrors(err.response.data);
+        return;
+      });
     }
-    navigate("/locations");
   }
 
   useEffect(() => {
@@ -87,15 +99,19 @@ const LocationEdit : React.FC = () => {
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <form onSubmit={onSubmit}>
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={[]}/>
-        <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude } errors={[]}/>
-        <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude} errors={[]}/>
-        <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius} errors={[]}/>
-        <br/>
-        <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
+          <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
+          <br/>
+          <Input placeholderText={'Gebied'} inputName={'areaId'} inputType={'text'} inputLabel={'Gebied'} onChange={handleChange} value={location.area.name} errors={errors.areaId}/>
+          <br/>
+          <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude} errors={errors.longitude}/>
+          <br/>
+          <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude} errors={errors.latitude}/>
+          <br/>
+          <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius} errors={errors.radius}/>
+          <br/>
+          <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Delay'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay} errors={errors.delay}/>
+          <br/>
+          <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
       {location.linkedInterventions.map(intervention => {
         return <p>{intervention.name}</p>

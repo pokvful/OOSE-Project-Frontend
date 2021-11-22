@@ -29,3 +29,11 @@
 .input:focus {
     border: 3px solid var(--wur-zwart);
 }
+
+.error {
+    padding: 1rem;
+    background-color: var(--wur-error-bg);
+    border: 2px solid var(--wur-rood);
+    display: inline-block;
+    clear:both;
+}

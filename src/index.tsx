@@ -16,6 +16,7 @@ import LocationEdit from './pages/location-edit/LocationEdit';
 import InterventionList from './pages/intervention-list/InterventionList';
 import InterventionEdit from './pages/intervention-edit/InterventionEdit';
 import InterventionDetail from './pages/intervention-detail/InterventionDetail';
+import Home from './pages/home/Home';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +24,7 @@ ReactDOM.render(
     <Nav/>
     <ToastContainer />
     <Routes>
-      <Route path="/" element={<AreaList></AreaList>} />
+      <Route path="/" element={<Home/>} />
       <Route path="/components" element={<Components/>}/>
       <Route path="areas">
         <Route index element={<AreaList/>}/>

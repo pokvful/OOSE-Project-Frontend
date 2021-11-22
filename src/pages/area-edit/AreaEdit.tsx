@@ -23,7 +23,9 @@ const AreaEdit : React.FC = () => {
       await service.create(area)
         .then(() => {
           toast.success("Gebied aangemaakt!");
+          navigate("/areas");
         }).catch(err => {
+          setErrors(err.response.data);
           return;
         });
     } else {
