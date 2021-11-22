@@ -1,4 +1,5 @@
 import axios from "axios";
+import AreaDTO from "../dto/AreaDTO";
 import LocationDTO from "../dto/LocationDTO";
 import IService from "./IService";
 
@@ -10,7 +11,7 @@ class LocationService implements IService<LocationDTO> {
             let toReturn = [] as LocationDTO[];
             data.forEach((location: any) => {
                 let locationDto: LocationDTO = new LocationDTO();
-                locationDto.locationId = location.locationId;
+                locationDto.area = location.area;
                 locationDto.latitude = location.latitude;
                 locationDto.longitude = location.longitude;
                 locationDto.name = location.name;

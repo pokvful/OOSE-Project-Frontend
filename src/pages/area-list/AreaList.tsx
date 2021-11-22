@@ -36,7 +36,7 @@ function AreaList() {
         {areas.map(area => {
           return (
             <div key={area.id}>
-              <TableRow title={area.name} onEditLink={"edit/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={area.id.toString()}/>
+              <TableRow title={area.name} onEditLink={"/areas/edit/" + area.id} onDeleteClick={() => deleteArea(area.id)} navigationLink={"areas/" + area.id}/>
             </div>
           )
         })}

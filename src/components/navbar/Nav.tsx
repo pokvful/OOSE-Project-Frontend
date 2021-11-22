@@ -16,13 +16,13 @@ const logOut = () => {
         <span className="branding"><p className="branding-name">Jitai</p><img className="navbar-logo" src={WURLogo} alt="WUR-logo"/></span>
       </Link>
       <div className="nav-links">
-        <Link className="nav-link" to="/locations">
+        <Link className="nav-link" to="/areas">
           <p>Gebieden</p>
         </Link>
         <Link className="nav-link" to="/locations">
           <p>Locaties</p>
         </Link>
-        <Link className="nav-link" to="/locations">
+        <Link className="nav-link" to="/interventions">
           <p>Interventies</p>
         </Link>
       </div>

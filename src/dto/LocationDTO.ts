@@ -1,4 +1,7 @@
+import AreaDTO from "./AreaDTO";
+
 class LocationDTO {
+    area: AreaDTO = new AreaDTO();
     locationId: number = 0;
     latitude: number = 0;
     longitude: number = 0;
@@ -9,7 +12,7 @@ class LocationDTO {
 
     constructor(LocationDTO?: LocationDTO) {
         Object.assign(this, LocationDTO);
-    }
+    };
 
 }
 
