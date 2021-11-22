@@ -12,6 +12,7 @@ import Select from '../../components/select/Select';
 const InterventionEdit : React.FC = () => {
   const [intervention, setIntervention] = useState({} as InterventionDTO);
   const [service, setService] = useState({} as InterventionService);
+  const [errors, setErrors] = useState({} as any);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -21,12 +22,21 @@ const InterventionEdit : React.FC = () => {
 
     if(!isEdit) {
       await service.create(intervention)
-        toast.success("Gebied aangemaakt!");
+        .then(() => {
+          toast.success("Interventie aangemaakt!");
+        }).catch(err => {
+          return;
+        });
     } else {
       await service.update(intervention)
-        toast.success("Gebied bijgewerkt!");
+      .then(response => {
+        toast.success("Interventie bijgewerkt!");
+        navigate("/interventions");
+      }).catch(err => {
+        setErrors(err.response.data);
+        return;
+      });
     }
-    navigate("/interventions");
   }
 
   useEffect(() => {
@@ -54,9 +64,9 @@ const InterventionEdit : React.FC = () => {
       <h2>{isEdit ? intervention.name + " Wijzigen" : "Interventie aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Select placeholderText={'Type interventie'} selectName={'interventiontype'} selectLabel={''} options={["interventie"]}/>
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={intervention.name}/>
+        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={intervention.name} errors={[]}/>
         <br/>
-        <Input placeholderText={'Commando'} inputName={'command'} inputType={'text'} inputLabel={'Commando'} onChange={handleChange} value={intervention.radius === 0 ? "" : intervention.radius}/>
+        <Input placeholderText={'Commando'} inputName={'command'} inputType={'text'} inputLabel={'Commando'} onChange={handleChange} value={intervention.radius === 0 ? "" : intervention.radius} errors={[]}/>
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>

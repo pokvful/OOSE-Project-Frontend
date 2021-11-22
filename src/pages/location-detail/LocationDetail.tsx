@@ -1,17 +1,13 @@
 import './LocationDetail.css';
 import { useState, useEffect } from 'react';
-import LocationService from '../../services/LocationService';
+import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
-import AreaDTO from '../../dto/AreaDTO';
-import AreaService from '../../services/AreaService';
 
 function LocationDetail() {
-  const [location, setLocation] = useState({} as LocationDTO);
-  const [areas, setAreas] = useState([] as AreaDTO[]);
+  const [location, setLocation] = useState<LocationDTO>();
   const [locationServiceState, setLocationServiceState] = useState({} as LocationService);
-  const [areaServiceState, setAreaServiceState] = useState({} as AreaService);
 
   const params = useParams();
 
@@ -24,20 +20,15 @@ function LocationDetail() {
     })
   }, [])
 
-  useEffect(() => {
-    const areaService = new AreaService();
-    setAreaServiceState(areaService)
-    areaService.loadAll()
-    .then(val => {
-      setAreas(val);
-    })
-  }, [])
-
   if(params.id === undefined) {
     return <div></div>
   }
 
   const id: number = Number.parseInt(params.id);
+
+  if(!location) {
+    return null;
+  }
 
   return (
     <div className="location-detail">
@@ -46,7 +37,7 @@ function LocationDetail() {
         <tbody>
           <tr>
             <td className="table-min-width">Gebied:</td>
-            <td>{areas[location.areaId].name}</td>
+            <td>{location.area.name}</td>
           </tr>
           <tr>
             <td className="table-min-width">Lengtegraad:</td>
@@ -62,7 +53,7 @@ function LocationDetail() {
           </tr>
           <tr>
             <td className="table-min-width">Triggertijd:</td>
-            <td>{location.delay + location.delay > 1 ? " seconden" : " seconde"}</td>
+            <td>{location.delay + (location.delay > 1 ? " seconden" : " seconde")}</td>
           </tr>
         </tbody>
       </table>

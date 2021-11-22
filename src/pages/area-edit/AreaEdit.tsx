@@ -23,7 +23,9 @@ const AreaEdit : React.FC = () => {
       await service.create(area)
         .then(() => {
           toast.success("Gebied aangemaakt!");
+          navigate("/areas");
         }).catch(err => {
+          setErrors(err.response.data);
           return;
         });
     } else {
@@ -65,19 +67,11 @@ const AreaEdit : React.FC = () => {
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
         <br/>
-<<<<<<< HEAD
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }/>
-        <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude}/>
-        <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius}/>
-=======
         <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude }  errors={errors.longitude}/>
         <br/>
         <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={errors.latitude}/>
         <br/>
         <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
->>>>>>> 00d5c6bc30f3e7c93e554eb0158fb6a2fa326825
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>

@@ -1,16 +1,17 @@
 import './LocationEdit.css';
-import '../../services/LocationService';
+import '../../services/location/LocationService';
 import { useState, useEffect, FormEvent } from 'react';
-import LocationService from '../../services/LocationService';
+import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Input from '../../components/input/Input';
 import SubmitButton from '../../components/submit-button/SubmitButton';
 
-const LocationEdit : React.FC = () => {
+function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
   const [service, setService] = useState({} as LocationService);
+  const [errors, setErrors] = useState({} as any);
   
   const params = useParams();
   const navigate = useNavigate();
@@ -20,13 +21,24 @@ const LocationEdit : React.FC = () => {
 
     if(!isEdit) {
       const res = await service.create(location)
-        console.log(res)
-        toast.success("Locatie aangemaakt!");
+        .then(() => {
+          toast.success("Locatie aangemaakt!");
+          navigate("/locations");
+        }).catch(err => {
+          setErrors(err.response.data);
+          console.log(err.response.data)
+          return;
+        });
     } else {
       await service.update(location)
+      .then(() => {
         toast.success("Locatie bijgewerkt!");
+        navigate("/locations");
+      }).catch(err => {
+        setErrors(err.response.data);
+        return;
+      });
     }
-    navigate("/locations");
   }
 
   useEffect(() => {
@@ -49,29 +61,25 @@ const LocationEdit : React.FC = () => {
     setLocation({...location, [e.target.id]: e.target.value})
   }
 
+  if(!location) {
+    return null;
+  }
+
   return (
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <form onSubmit={onSubmit}>
-<<<<<<< HEAD
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name}/>
+        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
         <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude }/>
+        <Input placeholderText={'Gebied'} inputName={'areaId'} inputType={'text'} inputLabel={'Gebied'} onChange={handleChange} value={location.area.name} errors={errors.areaId}/>
         <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude}/>
+        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude} errors={errors.longitude}/>
         <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius}/>
+        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'number'} inputLabel={'Breedtegraad'} onChange={handleChange} value={location.latitude === 0 ? "" : location.latitude} errors={errors.latitude}/>
         <br/>
-        <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay}/>
-=======
-        <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={[]}/>
+        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={location.radius === 0 ? "" : location.radius} errors={errors.radius}/>
         <br/>
-        <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'text'} inputLabel={'Lengtegraad'} onChange={handleChange} value={area.longitude === 0 ? "" : area.longitude } errors={[]}/>
-        <br/>
-        <Input placeholderText={'Breedtegraad'} inputName={'latitude'} inputType={'text'} inputLabel={'Breedtegraad'} onChange={handleChange} value={area.latitude === 0 ? "" : area.latitude} errors={[]}/>
-        <br/>
-        <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'text'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={[]}/>
->>>>>>> 00d5c6bc30f3e7c93e554eb0158fb6a2fa326825
+        <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Delay'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay} errors={errors.delay}/>
         <br/>
         <SubmitButton inputType={'submit'} value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>

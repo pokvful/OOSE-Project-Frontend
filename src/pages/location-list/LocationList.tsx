@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
-import LocationService from '../../services/LocationService';
+import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
 import AreaService from '../../services/AreaService';
 import AreaDTO from '../../dto/AreaDTO';
@@ -32,15 +32,13 @@ function LocationList() {
     console.log("search")
   }
 
-  console.log(locations);
-
   return (
     <div className="location-list">
       <TopSection pageTitle={'Locaties'} buttonTitle={'Toevoegen'} navigationLink={'/locations/edit/0'} onClick={search}/>
         {locations.map(location => {
           return (
             <div key={location.locationId}>
-              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"edit/" + location.locationId} onDeleteClick={() => deleteLocation(location.locationId)} navigationLink={location.locationId.toString()}/>
+              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"edit/" + location.locationId} onDeleteClick={() => deleteLocation(location.locationId)} navigationLink={ "/locations/" + location.locationId }/>
             </div>
           )
         })}
