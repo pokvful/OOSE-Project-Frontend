@@ -1,0 +1,20 @@
+.location-edit-add {
+    margin: 0 10%;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.interventions {
+    margin-left: 10%;
+}
+.interventions .submit-button {
+    margin-left: 5%;
+}
+.interventions form {
+    margin-bottom: 5%;
+}
