@@ -9,6 +9,7 @@
     font-size: 24px;
     border: none;
     cursor: pointer;
+    height: 52px;
 }
 
 .submit-button-disabled {

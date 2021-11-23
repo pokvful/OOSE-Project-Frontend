@@ -7,17 +7,18 @@ interface Props {
     selectLabel: string,
     options: Option[],
     value?: string,
-    onChange:any;
+    onChange:any,
+    width?: string;
 }
 
-function Select({ placeholderText, selectName, selectLabel, options, value = "", onChange }: Props ) {
+function Select({ placeholderText, selectName, selectLabel, options, value = "", onChange, width = "normal" }: Props ) {
     const changeSelect = (e:React.ChangeEvent<HTMLSelectElement>):any => {
         onChange(options[e.target.options.selectedIndex - 1].id);
     }
     return (
         <div>
             <h4 className="select-label">{selectLabel}</h4>
-            <select value={value != "" ? value : "0"} className="select" id={selectName} name={selectName} onChange={changeSelect}>
+            <select value={value != "" ? value : "0"} className={"select select-" + width} id={selectName} name={selectName} onChange={changeSelect}>
                 <option value="0">{placeholderText + "..."}</option>
                 {options.map(option => {
                     return (

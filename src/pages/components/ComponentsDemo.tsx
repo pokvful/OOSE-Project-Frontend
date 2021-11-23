@@ -26,9 +26,9 @@ function Components() {
             <h2>Components</h2>
 
             <h3>Enabled</h3>
-            <Button title="Disable button" disabled={false} onClick={() => setDisabled(!disabled)}/>
+            <Button title="Disable button" disabled={false} onClick={() => setDisabled(!disabled)} />
             <h3>Disabled</h3>
-            <Button title="Test" disabled={disabled} onClick={buttonClick}/>
+            <Button title="Test" disabled={disabled} onClick={buttonClick} />
 
             <h1>Heading 1</h1>
             <h2>Heading 2</h2>

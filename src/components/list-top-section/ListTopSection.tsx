@@ -20,7 +20,7 @@ function TopSection({ pageTitle, buttonTitle, navigationLink, onClick }: Props )
             <h2>{pageTitle}</h2>
             <div className="top-section-component-right">
                 <Searchbar placeholderText={'zoeken...'} inputName={'search'} onClick={onClick}/>
-                <Button title={buttonTitle} onClick={() => navigate(navigationLink)}/>
+                <Button title={buttonTitle} onClick={() => navigate(navigationLink)} />
             </div>
         </div>
     );

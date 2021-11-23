@@ -1,7 +1,6 @@
 .input {
-    border: none;
     padding: 12px 20px;
-    margin: 3px 0;
+    margin: 3px 0;  
     background-color: var(--wur-licht-grijs);
     height: 24px;
     font-size: 18px;
