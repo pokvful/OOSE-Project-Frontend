@@ -13,9 +13,6 @@ import AreaEdit from './pages/area-edit/AreaEdit';
 import LocationList from './pages/location-list/LocationList';
 import LocationDetail from './pages/location-detail/LocationDetail';
 import LocationEdit from './pages/location-edit/LocationEdit';
-import InterventionList from './pages/intervention-list/InterventionList';
-import InterventionEdit from './pages/intervention-edit/InterventionEdit';
-import InterventionDetail from './pages/intervention-detail/InterventionDetail';
 import Home from './pages/home/Home';
 
 ReactDOM.render(
@@ -35,11 +32,6 @@ ReactDOM.render(
         <Route index element={<LocationList />}/>
         <Route path=":id" element={<LocationDetail />}/>
         <Route path="edit/:id" element={<LocationEdit />}/>
-      </Route>
-      <Route path="interventions">
-        <Route index element={<InterventionList />}/>
-        <Route path=":id" element={<InterventionDetail />}/>
-        <Route path="edit/:id" element={<InterventionEdit />}/>
       </Route>
       <Route
       //todo 404
