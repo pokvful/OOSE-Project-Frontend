@@ -1,10 +1,10 @@
-import netwerkAdapter from "../adapters/NetwerkAdapterFactory";
+import networkAdapter from "../adapters/NetworkAdapterFactory";
 import InterventionDTO from "../dto/InterventionDTO";
 import IService from "./IService";
 
 class InterventionService implements IService<InterventionDTO> {
     async loadAll(): Promise<InterventionDTO[]> {
-        return netwerkAdapter.get("interventions")
+        return networkAdapter.get("interventions")
             .then(response => response.data)
             .then(data => {
                 let toReturn = [] as InterventionDTO[];
@@ -22,7 +22,7 @@ class InterventionService implements IService<InterventionDTO> {
             });
     }
     async loadOne(id: number): Promise<InterventionDTO> {
-        return netwerkAdapter.get("interventions/" + id)
+        return networkAdapter.get("interventions/" + id)
             .then(response => response.data)
             .then(intervention => {
                 let interventionDto: InterventionDTO = new InterventionDTO();
@@ -35,13 +35,13 @@ class InterventionService implements IService<InterventionDTO> {
             });
     }
     update(value: InterventionDTO): Promise<void> {
-        return netwerkAdapter.put("interventions", value);
+        return networkAdapter.put("interventions", value);
     }
     create(value: InterventionDTO): Promise<void> {
-        return netwerkAdapter.post("interventions", value);
+        return networkAdapter.post("interventions", value);
     }
     delete(id: number): Promise<void> {
-        return netwerkAdapter.delete("interventions/" + id);
+        return networkAdapter.delete("interventions/" + id);
     }
 }
 

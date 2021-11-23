@@ -1,10 +1,10 @@
-import netwerkAdapter from "../adapters/NetwerkAdapterFactory";
+import networkAdapter from "../adapters/NetworkAdapterFactory";
 import AreaDTO from "../dto/AreaDTO";
 import IService from "./IService";
 
 class AreaService implements IService<AreaDTO> {
     async loadAll(): Promise<AreaDTO[]> {
-        return netwerkAdapter.get("areas")
+        return networkAdapter.get("areas")
             .then(response => response.data)
             .then(data => {
                 let toReturn = [] as AreaDTO[];
@@ -22,7 +22,7 @@ class AreaService implements IService<AreaDTO> {
             });
     }
     async loadOne(id: number): Promise<AreaDTO> {
-        return netwerkAdapter.get("areas/" + id)
+        return networkAdapter.get("areas/" + id)
             .then(response => response.data)
             .then(area => {
                 let areaDto: AreaDTO = new AreaDTO();
@@ -35,13 +35,13 @@ class AreaService implements IService<AreaDTO> {
             });
     }
     update(value: AreaDTO): Promise<void> {
-        return netwerkAdapter.put("areas", value);
+        return networkAdapter.put("areas", value);
     }
     create(value: AreaDTO): Promise<void> {
-        return netwerkAdapter.post("areas", value);
+        return networkAdapter.post("areas", value);
     }
     delete(id: number): Promise<void> {
-        return netwerkAdapter.delete("areas/" + id);
+        return networkAdapter.delete("areas/" + id);
     }
 }
 

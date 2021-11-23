@@ -1,4 +1,4 @@
-import netwerkAdapter from "../../adapters/NetwerkAdapterFactory";
+import networkAdapter from "../../adapters/NetworkAdapterFactory";
 import AreaDTO from "../../dto/AreaDTO";
 import LocationDTO from "../../dto/LocationDTO";
 import IService from "../IService";
@@ -7,7 +7,7 @@ import LocationUpdateRequestDTO from "./LocationUpdateRequestDTO";
 
 class LocationService implements IService<LocationDTO> {
     async loadAll(): Promise<LocationDTO[]> {
-        return netwerkAdapter.get("locations")
+        return networkAdapter.get("locations")
             .then(response => response.data)
             .then(data => {
                 let toReturn = [] as LocationDTO[];
@@ -29,7 +29,7 @@ class LocationService implements IService<LocationDTO> {
             });
     }
     async loadOne(id: number): Promise<LocationDTO> {
-        return netwerkAdapter.get("locations/" + id)
+        return networkAdapter.get("locations/" + id)
             .then(response => response.data)
             .then(location => {
                 let locationDto: LocationDTO = new LocationDTO();
@@ -53,13 +53,13 @@ class LocationService implements IService<LocationDTO> {
             });
     }
     update(value: LocationDTO): Promise<void> {
-        return netwerkAdapter.put("locations", new LocationUpdateRequestDTO(value));
+        return networkAdapter.put("locations", new LocationUpdateRequestDTO(value));
     }
     async create(value: LocationDTO): Promise<void> {
-        return netwerkAdapter.post("locations", new LocationCreateRequestDTO(value));
+        return networkAdapter.post("locations", new LocationCreateRequestDTO(value));
     }
     async delete(id: number): Promise<void> {
-        return netwerkAdapter.delete("locations/" + id);
+        return networkAdapter.delete("locations/" + id);
     }
 }
 
