@@ -117,7 +117,7 @@ function LocationEdit() {
   return (
     <div className="location-edit-add">
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
-      <div className="row">
+      <div className="fields-row">
       <form onSubmit={onSubmit}>
           <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
           <br/>
@@ -127,7 +127,9 @@ function LocationEdit() {
             option.name = x.name;
 
             return option;
-          })}/>
+          })}
+          width={"large"}
+          />
           <br/>
           <Input placeholderText={'Lengtegraad'} inputName={'longitude'} inputType={'number'} inputLabel={'Lengtegraad'} onChange={handleChange} value={location.longitude === 0 ? "" : location.longitude} errors={errors.longitude}/>
           <br/>
@@ -140,7 +142,7 @@ function LocationEdit() {
           <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
       </form>
       <div className="column interventions">
-        <form className="row" onSubmit={addIntervention}>
+        <form className="add-row" onSubmit={addIntervention}>
           <Select 
             placeholderText={'Kies een interventie'} 
             selectName={'new-intervention'} 
@@ -153,8 +155,12 @@ function LocationEdit() {
               option.name = intervention.name;
 
               return option;
-            })} />
-          <SubmitButton value="Voeg toe"/>
+            })
+            }
+            />
+          <div className="add-button">
+            <SubmitButton value="Voeg toe"/>
+          </div>
         </form>
         {location.linkedInterventions.map(intervention => {
           return <TableRow title={intervention.name} onDeleteClick={() => removeIntervention(intervention.id)} />

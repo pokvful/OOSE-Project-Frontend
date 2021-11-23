@@ -1,10 +1,20 @@
 .location-edit-add {
     margin: 0 10%;
 }
-.row {
+.add-row {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
 }
+
+.fields-row {
+    display: flex;
+}
+
+.add-button {
+    margin-bottom: 3px;
+}
+
 .column {
     display: flex;
     flex-direction: column;

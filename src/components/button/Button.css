@@ -9,12 +9,19 @@ button {
     font-size: 24px;
     border: none;
     cursor: pointer;
-    height: 40px;
 }
 
 .button-disabled {
     background-color: var(--wur-grijs);
     cursor: default;
+}
+
+.button-normal {
+    height: 40px;
+}
+
+.button-large {
+    height: 50px;
 }
 
 .button-enabled:hover {

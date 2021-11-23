@@ -8,9 +8,10 @@ interface Props {
     pageTitle: String,
     buttonTitle: String,
     navigationLink: string,
+    subheading: string
 }
 
-function DetailTopSection({ pageTitle, buttonTitle, navigationLink }: Props ) {
+function DetailTopSection({ pageTitle, buttonTitle, navigationLink, subheading }: Props ) {
 
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ function DetailTopSection({ pageTitle, buttonTitle, navigationLink }: Props ) {
         <div className="detail-top-section">
             <div>
                 <h2 className="detail-top-section-margin">{pageTitle}</h2>
-                <h3 className="detail-top-section-margin">Gebieden</h3>
+                <h3 className="detail-top-section-margin">{subheading}</h3>
             </div>
             <Button title={buttonTitle} onClick={() => navigate(navigationLink)}/>
         </div>
