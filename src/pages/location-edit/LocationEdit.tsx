@@ -103,11 +103,13 @@ function LocationEdit() {
   const addIntervention = (e: FormEvent) : void => {
     e.preventDefault();
     var select = document.getElementById('new-intervention') as any;
-    var value = select.options[select.selectedIndex].value;;
-    const newLoc : LocationDTO = new LocationDTO(location);
-    newLoc.linkedInterventions.push(allInterventions.find(x => x.id === Number(value)) as InterventionDTO);
-
-    setLocation(newLoc);
+    var value = select.options[select.selectedIndex].value;
+    if(value != 0) {
+      const newLoc : LocationDTO = new LocationDTO(location);
+      newLoc.linkedInterventions.push(allInterventions.find(x => x.id === Number(value)) as InterventionDTO);
+  
+      setLocation(newLoc);
+    }
   }
 
   if(!allInterventions || !location || !location.linkedInterventions || !allAreas) {
