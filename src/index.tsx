@@ -11,7 +11,7 @@ import AreaDetail from './pages/area-detail/AreaDetail';
 import AreaEdit from './pages/area-edit/AreaEdit';
 import LocationList from './pages/location-list/LocationList';
 import LocationDetail from './pages/location-detail/LocationDetail';
-import LocationEdit from './pages/location-edit/LocationEdit'
+import LocationEdit from './pages/location-edit/LocationEdit';
 import Home from './pages/home/Home';
 
 ReactDOM.render(
