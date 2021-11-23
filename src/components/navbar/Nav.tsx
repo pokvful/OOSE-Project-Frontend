@@ -22,9 +22,9 @@ const logOut = () => {
         <Link className="nav-link" to="/locations">
           <p>Locaties</p>
         </Link>
-        <Link className="nav-link" to="/interventions">
+        {/* <Link className="nav-link" to="/interventions">
           <p>Interventies</p>
-        </Link>
+        </Link> */}
       </div>
       <Button title="Log uit" disabled={false} onClick={logOut} />
     </div>
