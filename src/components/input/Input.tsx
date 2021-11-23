@@ -17,7 +17,7 @@ function Input({ placeholderText, inputName, inputLength = "short", inputType, i
     return (
         <div>
             <h4 className="input-label">{inputLabel}</h4>
-            <input className={"input length-" + inputLength} onChange={onChange} value={value} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."}/>
+            <input className={"input length-" + inputLength} onChange={onChange} value={value} id={inputName} type={inputType} name={inputName} placeholder={placeholderText + "..."} step="any"/>
             {errors.map(error => {
                 return <p className="error">{error}</p>
             })}
