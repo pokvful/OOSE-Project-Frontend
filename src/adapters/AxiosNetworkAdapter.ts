@@ -1,7 +1,7 @@
 import axios from "axios";
-import NetworkAdapter from "./NetworkAdapter";
+import INetworkAdapter from "./INetworkAdapter";
 
-class AxiosNetworkAdapter implements NetworkAdapter {
+class AxiosNetworkAdapter implements INetworkAdapter {
     private url: string = "http://localhost:8080";
     private stripSlash = (path: string) => path.charAt(0) == "/" ? path.slice(1) : path;
     private buildUrl = (path: string): string => `${this.url}/${this.stripSlash(path)}`;
