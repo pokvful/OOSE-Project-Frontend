@@ -1,6 +1,6 @@
 import NetworkAdapter from "./NetworkAdapter";
-import NetworkAdapterImpl from "./NetworkAdapterImpl";
+import AxiosNetwerkAdapter from "./AxiosNetworkAdapter";
 
-const networkAdapter: NetworkAdapter = new NetworkAdapterImpl();
+const networkAdapter: NetworkAdapter = new AxiosNetwerkAdapter();
 
 export default networkAdapter;

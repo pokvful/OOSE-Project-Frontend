@@ -1,7 +1,7 @@
 import axios from "axios";
 import NetworkAdapter from "./NetworkAdapter";
 
-class NetworkAdapterImpl implements NetworkAdapter {
+class AxiosNetworkAdapter implements NetworkAdapter {
     private url: string = "http://localhost:8080";
     private stripSlash = (path: string) => path.charAt(0) == "/" ? path.slice(1) : path;
     private buildUrl = (path: string): string => `${this.url}/${this.stripSlash(path)}`;
@@ -12,4 +12,4 @@ class NetworkAdapterImpl implements NetworkAdapter {
     public delete = (path: string, body?: any | undefined): Promise<any> => axios.delete (this.buildUrl(path), body);
 }
 
-export default NetworkAdapterImpl;
+export default AxiosNetworkAdapter;
