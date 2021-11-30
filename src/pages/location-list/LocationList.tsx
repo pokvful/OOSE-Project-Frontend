@@ -1,18 +1,13 @@
 import './LocationList.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
-import AreaService from '../../services/AreaService';
-import AreaDTO from '../../dto/AreaDTO';
 
 function LocationList() {
   const [locations, setLocations] = useState([] as LocationDTO[]);
   const [locationServiceState, setLocationServiceState] = useState({} as LocationService);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const locationService = new LocationService();
