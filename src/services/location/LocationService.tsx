@@ -12,9 +12,10 @@ class LocationService implements IService<LocationDTO> {
             .then(data => {
                 let toReturn = [] as LocationDTO[];
                 data.forEach((location: any) => {
+                    console.log(location);
                     let locationDto: LocationDTO = new LocationDTO();
                     locationDto.area = location.area;
-                    locationDto.locationId = location.locationId;
+                    locationDto.locationId = location.id;
                     locationDto.latitude = location.latitude;
                     locationDto.longitude = location.longitude;
                     locationDto.name = location.name;
@@ -40,7 +41,7 @@ class LocationService implements IService<LocationDTO> {
                 areaDTO.radius = areaData.radius;
                 areaDTO.longitude = areaData.longitude;
                 areaDTO.latitude = areaData.latitude;
-                locationDto.locationId = location.locationId;
+                locationDto.locationId = location.id;
                 locationDto.latitude = location.latitude;
                 locationDto.longitude = location.longitude;
                 locationDto.name = location.name;
