@@ -27,7 +27,7 @@ function FranchiseDetail() {
 
   return (
     <div className="franchise-detail">
-      <DetailTopSection pageTitle={franchise.name} buttonTitle={'wijzigen'} navigationLink={'/franchise/edit/' + franchise.id} subheading={'Franchises'}/>
+      <DetailTopSection pageTitle={franchise.name} buttonTitle={'wijzigen'} navigationLink={'/franchises/edit/' + franchise.id} subheading={'Franchises'}/>
     </div>
   );
 }

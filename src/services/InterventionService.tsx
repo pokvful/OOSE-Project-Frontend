@@ -11,10 +11,7 @@ class InterventionService implements IService<InterventionDTO> {
                 data.forEach((intervention: any) => {
                     let interventionDto: InterventionDTO = new InterventionDTO();
                     interventionDto.id = intervention.id;
-                    interventionDto.latitude = intervention.latitude;
-                    interventionDto.longitude = intervention.longitude;
                     interventionDto.name = intervention.name;
-                    interventionDto.radius = intervention.radius;
                     toReturn.push(interventionDto);
                 });
 
@@ -27,10 +24,7 @@ class InterventionService implements IService<InterventionDTO> {
             .then(intervention => {
                 let interventionDto: InterventionDTO = new InterventionDTO();
                 interventionDto.id = intervention.id;
-                interventionDto.latitude = intervention.latitude;
-                interventionDto.longitude = intervention.longitude;
                 interventionDto.name = intervention.name;
-                interventionDto.radius = intervention.radius;
                 return interventionDto;
             });
     }

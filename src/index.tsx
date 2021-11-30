@@ -15,6 +15,7 @@ import LocationEdit from './pages/location-edit/LocationEdit';
 import Home from './pages/home/Home';
 import FranchiseList from './pages/franchise-list/FranchiseList';
 import FranchiseDetail from './pages/franchise-detail/FranchiseDetail';
+import FranchiseEdit from './pages/franchise-edit/FranchiseEdit';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -37,7 +38,7 @@ ReactDOM.render(
       <Route path="franchises">
         <Route index element={<FranchiseList />}/>
         <Route path=":id" element={<FranchiseDetail />}/>
-        {/* <Route path="edit/:id" element={<LocationEdit />}/> */}
+        <Route path="edit/:id" element={<FranchiseEdit />}/>
       </Route>
       <Route
       //todo 404

@@ -1,6 +1,8 @@
 import networkAdapter from "../../adapters/NetworkAdapterFactory";
 import FranchiseDTO from "../../dto/FranchiseDTO";
 import IService from "../IService";
+import FranchiseCreateRequestDTO from "./FranchiseCreateRequestDTO";
+import FranchiseUpdateRequestDTO from "./FranchiseUpdateRequestDTO";
 
 class FranchiseService implements IService<FranchiseDTO> {
     async loadAll(): Promise<FranchiseDTO[]> {
@@ -32,15 +34,14 @@ class FranchiseService implements IService<FranchiseDTO> {
     }
 
     update(value: FranchiseDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.put("franchise", new FranchiseUpdateRequestDTO(value));
     }
     create(value: FranchiseDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.post("franchise", new FranchiseCreateRequestDTO(value));
     }
     delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.delete("franchise/" + id);
     }
-
 }
 
 export default FranchiseService;
