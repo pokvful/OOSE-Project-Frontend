@@ -1,7 +1,5 @@
 import './FranchiseEdit.css';
-import '../../services/AreaService';
 import { useState, useEffect, FormEvent } from 'react';
-import AreaService from '../../services/AreaService';
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import Input from '../../components/input/Input';
@@ -64,7 +62,7 @@ const FranchiseEdit : React.FC = () => {
 
   return (
     <div className="franchise-edit-add">
-      <h2>{isEdit ? franchise.name + " Wijzigen" : "Gebied aanmaken"}</h2>
+      <h2>{isEdit ? franchise.name + " Wijzigen" : "Franchise aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={franchise.name} errors={errors.name}/>
         <br/>

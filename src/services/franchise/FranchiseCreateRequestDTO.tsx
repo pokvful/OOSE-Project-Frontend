@@ -1,6 +1,6 @@
 import FranchiseDTO from "../../dto/FranchiseDTO";
 
-class LocationUpdateRequestDTO {
+class FranchiseUpdateRequestDTO {
     name: String = "";
     
     constructor(franchiseDTO: FranchiseDTO) {
@@ -8,4 +8,4 @@ class LocationUpdateRequestDTO {
     };
 }
 
-export default LocationUpdateRequestDTO;
+export default FranchiseUpdateRequestDTO;

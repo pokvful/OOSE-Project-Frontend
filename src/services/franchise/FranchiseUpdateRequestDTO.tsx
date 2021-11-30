@@ -1,6 +1,6 @@
 import FranchiseDTO from "../../dto/FranchiseDTO";
 
-class LocationUpdateRequestDTO {
+class FranchiseUpdateRequestDTO {
     id: number = 0;
     name: String = "";
     
@@ -10,4 +10,4 @@ class LocationUpdateRequestDTO {
     };
 }
 
-export default LocationUpdateRequestDTO;
+export default FranchiseUpdateRequestDTO;
