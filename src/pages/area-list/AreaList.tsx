@@ -1,6 +1,5 @@
 import './AreaList.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import AreaService from '../../services/AreaService';
@@ -9,8 +8,6 @@ import AreaDTO from '../../dto/AreaDTO';
 function AreaList() {
   const [areas, setAreas] = useState([] as AreaDTO[]);
   const [service, setService] = useState({} as AreaService);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const areaService = new AreaService();

@@ -13,6 +13,8 @@ import LocationList from './pages/location-list/LocationList';
 import LocationDetail from './pages/location-detail/LocationDetail';
 import LocationEdit from './pages/location-edit/LocationEdit';
 import Home from './pages/home/Home';
+import FranchiseList from './pages/franchise-list/FranchiseList';
+import FranchiseDetail from './pages/franchise-detail/FranchiseDetail';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -31,6 +33,11 @@ ReactDOM.render(
         <Route index element={<LocationList />}/>
         <Route path=":id" element={<LocationDetail />}/>
         <Route path="edit/:id" element={<LocationEdit />}/>
+      </Route>
+      <Route path="franchises">
+        <Route index element={<FranchiseList />}/>
+        <Route path=":id" element={<FranchiseDetail />}/>
+        {/* <Route path="edit/:id" element={<LocationEdit />}/> */}
       </Route>
       <Route
       //todo 404

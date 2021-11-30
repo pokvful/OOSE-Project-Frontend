@@ -3,7 +3,6 @@ import '../../services/AreaService';
 import { useState, useEffect } from 'react';
 import AreaService from '../../services/AreaService';
 import AreaDTO from '../../dto/AreaDTO';
-import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 
