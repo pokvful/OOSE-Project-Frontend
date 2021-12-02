@@ -12,7 +12,6 @@ class LocationService implements IService<LocationDTO> {
             .then(data => {
                 let toReturn = [] as LocationDTO[];
                 data.forEach((location: any) => {
-                    console.log(location);
                     let locationDto: LocationDTO = new LocationDTO();
                     locationDto.area = location.area;
                     locationDto.locationId = location.id;

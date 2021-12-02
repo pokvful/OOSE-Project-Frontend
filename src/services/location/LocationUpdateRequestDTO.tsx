@@ -2,6 +2,7 @@ import LocationDTO from "../../dto/LocationDTO";
 
 class LocationUpdateRequestDTO {
     areaId: number = 0;
+    franchiseId: number = 0;
     locationId: number = 0;
     latitude: number = 0;
     longitude: number = 0;
@@ -12,6 +13,7 @@ class LocationUpdateRequestDTO {
     
     constructor(locationDTO: LocationDTO) {
         this.areaId = locationDTO.areaId;
+        this.franchiseId = locationDTO.franchiseId;
         this.locationId = locationDTO.locationId;
         this.latitude = locationDTO.latitude;
         this.longitude = locationDTO.longitude;
