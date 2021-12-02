@@ -2,7 +2,7 @@ import './LocationDetail.css';
 import { useState, useEffect } from 'react';
 import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 
 function LocationDetail() {
