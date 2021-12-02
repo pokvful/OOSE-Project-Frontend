@@ -74,7 +74,6 @@ function LocationEdit() {
       locationService.loadOne(id)
       .then(val => {
         setLocation(val);
-        console.log(val);
       })
     }
   }, [])
