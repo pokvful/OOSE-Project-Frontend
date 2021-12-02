@@ -25,7 +25,7 @@ class FranchiseService implements IService<FranchiseDTO> {
         .get("franchise/" + id)
         .then(response => response.data)
         .then(data => {
-            let toReturn: FranchiseDTO = new FranchiseDTO;
+            let toReturn: FranchiseDTO = new FranchiseDTO();
             toReturn.id = data.id;
             toReturn.name = data.name;
 

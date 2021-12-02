@@ -69,11 +69,12 @@ function LocationEdit() {
     if(!isEdit) {
       let locDTO: LocationDTO = new LocationDTO();
       locDTO.area = new AreaDTO();
-      setLocation(locDTO)
+      setLocation(locDTO);
     } else {
       locationService.loadOne(id)
       .then(val => {
         setLocation(val);
+        console.log(val);
       })
     }
   }, [])
