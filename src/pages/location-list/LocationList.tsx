@@ -19,7 +19,7 @@ function LocationList() {
   }, [])
 
   const deleteLocation = (locationId: number) => {
-    setLocations(locations.filter(x => x.locationId !== locationId))
+    setLocations(locations.filter(x => x.id !== locationId))
     locationServiceState.delete(locationId);
   }
 
@@ -32,8 +32,8 @@ function LocationList() {
       <TopSection pageTitle={'Locaties'} buttonTitle={'Toevoegen'} navigationLink={'/locations/edit/0'} onClick={search}/>
         {locations.map(location => {
           return (
-            <div key={location.locationId}>
-              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"edit/" + location.locationId} onDeleteClick={() => deleteLocation(location.locationId)} navigationLink={ "/locations/" + location.locationId }/>
+            <div key={location.id}>
+              <TableRow title={location.name} subtitle={location.area.name} onEditLink={"edit/" + location.id} onDeleteClick={() => deleteLocation(location.id)} navigationLink={ "/locations/" + location.id }/>
             </div>
           )
         })}

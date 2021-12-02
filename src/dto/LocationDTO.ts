@@ -5,7 +5,7 @@ import InterventionDTO from "./InterventionDTO";
 class LocationDTO {
     area: AreaDTO = new AreaDTO();
     franchise: FranchiseDTO = new FranchiseDTO();
-    locationId: number = 0;
+    id: number = 0;
     latitude: number = 0;
     longitude: number = 0;
     name: string = "";

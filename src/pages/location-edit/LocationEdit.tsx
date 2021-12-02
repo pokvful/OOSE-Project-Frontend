@@ -14,12 +14,15 @@ import TableRow from '../../components/tablerow/TableRow';
 import AreaService from '../../services/AreaService';
 import Select from '../../components/select/Select';
 import Option from '../../components/select/Option';
+import FranchiseService from '../../services/franchise/FranchiseService';
+import FranchiseDTO from '../../dto/FranchiseDTO';
 
 function LocationEdit() {
   const [location, setLocation] = useState({} as LocationDTO);
   const [selectedIntervention, setSelectedIntervention] = useState(0 as Number);
   const [allAreas, setAllAreas] = useState([] as AreaDTO[]);
   const [allInterventions, setAllInterventions] = useState([] as InterventionDTO[]);
+  const [allFranchises, setAllFranchises] = useState([] as FranchiseDTO[]);
   const [service, setService] = useState({} as LocationService);
   const [errors, setErrors] = useState({} as any);
   
@@ -55,6 +58,7 @@ function LocationEdit() {
     const locationService = new LocationService();
     const interventionService = new InterventionService();
     const areaService = new AreaService();
+    const franchiseService = new FranchiseService();
     setService(locationService)
     interventionService
       .loadAll()
@@ -65,7 +69,12 @@ function LocationEdit() {
       .loadAll()
       .then(areas => {
         setAllAreas(areas);
-      })
+      });
+    franchiseService
+      .loadAll()
+      .then(franchises => {
+        setAllFranchises(franchises);
+      });
     if(!isEdit) {
       let locDTO: LocationDTO = new LocationDTO();
       locDTO.area = new AreaDTO();
@@ -74,7 +83,6 @@ function LocationEdit() {
       locationService.loadOne(id)
       .then(val => {
         setLocation(val);
-        console.log(val);
       })
     }
   }, [])
@@ -88,6 +96,10 @@ function LocationEdit() {
 
   const updateArea = (id:string) => {
     setLocation({...location, "areaId": Number(id)});
+  }
+
+  const updateFranchise = (id:string) => {
+    setLocation({...location, "franchiseId": Number(id)});
   }
 
   const changeSelectedIntervention = (id:string) => {
@@ -125,6 +137,16 @@ function LocationEdit() {
           <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={location.name} errors={errors.name}/>
           <br/>
           <Select placeholderText={'Kies een gebied'} value={location.areaId.toString()} selectName={'areaId'} selectLabel={'Gebied'} onChange={updateArea} options={allAreas.map(x => {
+            let option = new Option();
+            option.id = x.id.toString();
+            option.name = x.name;
+
+            return option;
+          })}
+          width={"large"}
+          />
+          <br/>
+          <Select placeholderText={'Kies een franchise'} value={location.franchiseId.toString()} selectName={'franchiseId'} selectLabel={'Franchise'} onChange={updateFranchise} options={allFranchises.map(x => {
             let option = new Option();
             option.id = x.id.toString();
             option.name = x.name;

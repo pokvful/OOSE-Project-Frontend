@@ -2,10 +2,8 @@ import './LocationDetail.css';
 import { useState, useEffect } from 'react';
 import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
-import AreaService from '../../services/AreaService';
-import AreaDTO from '../../dto/AreaDTO';
 
 function LocationDetail() {
   const [location, setLocation] = useState<LocationDTO>();
@@ -32,12 +30,16 @@ function LocationDetail() {
 
   return (
     <div className="location-detail">
-      <DetailTopSection pageTitle={location.name} buttonTitle={'wijzigen'} navigationLink={'/locations/edit/' + location.locationId} subheading={'Locaties'}/>
+      <DetailTopSection pageTitle={location.name} buttonTitle={'wijzigen'} navigationLink={'/locations/edit/' + location.id} subheading={'Locaties'}/>
       <table className="location-detail-table">
         <tbody>
           <tr>
             <td className="table-min-width">Gebied:</td>
             <td>{location.area.name}</td>
+          </tr>
+          <tr>
+            <td className="table-min-width">Franchise:</td>
+            <td>{location.franchise.name}</td>
           </tr>
           <tr>
             <td className="table-min-width">Lengtegraad:</td>

@@ -16,7 +16,7 @@ class LocationService implements IService<LocationDTO> {
                     let locationDto: LocationDTO = new LocationDTO();
                     locationDto.area = location.area;
                     locationDto.franchise = location.franchise;
-                    locationDto.locationId = location.id;
+                    locationDto.id = location.id;
                     locationDto.latitude = location.latitude;
                     locationDto.longitude = location.longitude;
                     locationDto.name = location.name;
@@ -31,7 +31,7 @@ class LocationService implements IService<LocationDTO> {
                 return toReturn;
             });
     }
-    
+
     async loadOne(id: number): Promise<LocationDTO> {
         return networkAdapter.get("locations/" + id)
             .then(response => response.data)
@@ -48,7 +48,7 @@ class LocationService implements IService<LocationDTO> {
                 areaDTO.latitude = areaData.latitude;
                 franchiseDTO.id = franchiseData.id;
                 franchiseDTO.name = franchiseData.name;
-                locationDto.locationId = location.id;
+                locationDto.id = location.id;
                 locationDto.latitude = location.latitude;
                 locationDto.longitude = location.longitude;
                 locationDto.name = location.name;
@@ -58,6 +58,7 @@ class LocationService implements IService<LocationDTO> {
                 locationDto.area = Object.assign({}, areaDTO);
                 locationDto.areaId = areaDTO.id;
                 locationDto.franchise = Object.assign({}, franchiseDTO);
+                locationDto.franchiseId = franchiseDTO.id;
                 return locationDto;
             });
     }
