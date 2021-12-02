@@ -9,22 +9,14 @@ import AreaDTO from '../../dto/AreaDTO';
 
 function LocationDetail() {
   const [location, setLocation] = useState<LocationDTO>();
-  const [areas, setAreas] = useState([] as AreaDTO[]);
-  const [locationServiceState, setLocationServiceState] = useState({} as LocationService);
 
   const params = useParams();
 
   useEffect(() => {
-    const areaService = new AreaService();
     const locationService = new LocationService();
-    setLocationServiceState(locationService)
     locationService.loadOne(id)
     .then(val => {
       setLocation(val);
-    });
-    areaService.loadAll()
-    .then((val:any) => {
-      setAreas(val);
     });
   }, [])
 
