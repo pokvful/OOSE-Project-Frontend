@@ -16,6 +16,7 @@ import Home from './pages/home/Home';
 import FranchiseList from './pages/franchise-list/FranchiseList';
 import FranchiseDetail from './pages/franchise-detail/FranchiseDetail';
 import FranchiseEdit from './pages/franchise-edit/FranchiseEdit';
+import GoalList from './pages/goal-list/GoalList';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -39,6 +40,9 @@ ReactDOM.render(
         <Route index element={<FranchiseList />}/>
         <Route path=":id" element={<FranchiseDetail />}/>
         <Route path="edit/:id" element={<FranchiseEdit />}/>
+      </Route>
+      <Route path="goals">
+        <Route index element={<GoalList />}/>
       </Route>
       <Route
       //todo 404
