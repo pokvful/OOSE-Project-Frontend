@@ -29,11 +29,7 @@ function LocationDetail() {
   }
 
   return (
-<<<<<<< HEAD
     <div className="page">
-=======
-    <div className="location-detail">
->>>>>>> 8126008a9ac10e39c8215eaf5790afbef1dd9f5f
       <DetailTopSection pageTitle={location.name} buttonTitle={'Wijzigen'} navigationLink={'/locations/edit/' + location.id} subheading={'Locaties'}/>
       <table className="location-detail-table">
         <tbody>
