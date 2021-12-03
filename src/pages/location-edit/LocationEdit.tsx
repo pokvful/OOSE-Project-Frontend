@@ -130,7 +130,7 @@ function LocationEdit() {
   }
 
   return (
-    <div className="page">
+    <div>
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
       <form onSubmit={onSubmit}>

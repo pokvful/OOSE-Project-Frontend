@@ -26,7 +26,7 @@ function FranchiseDetail() {
   const id: number = Number.parseInt(params.id);
 
   return (
-    <div className="page">
+    <div>
       <DetailTopSection pageTitle={franchise.name} buttonTitle={'Wijzigen'} navigationLink={'/franchises/edit/' + franchise.id} subheading={'Franchises'}/>
     </div>
   );

@@ -62,7 +62,7 @@ const AreaEdit : React.FC = () => {
   }
 
   return (
-    <div className="page">
+    <div>
       <h2>{isEdit ? area.name + " Wijzigen" : "Gebied aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
