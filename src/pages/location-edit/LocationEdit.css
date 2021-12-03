@@ -6,6 +6,7 @@
 
 .fields-row {
     display: flex;
+    column-gap: 10%;
 }
 
 .add-button {
@@ -15,9 +16,6 @@
 .column {
     display: flex;
     flex-direction: column;
-}
-.interventions {
-    margin-left: 10%;
 }
 .interventions .submit-button {
     margin-left: 5%;

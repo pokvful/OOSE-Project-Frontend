@@ -27,7 +27,11 @@ function AreaDetail() {
   const id: number = Number.parseInt(params.id);
 
   return (
+<<<<<<< HEAD
     <div className="page">
+=======
+    <div className="area-detail">
+>>>>>>> 8126008a9ac10e39c8215eaf5790afbef1dd9f5f
       <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/areas/edit/' + area.id} subheading={'Gebieden'}/>
       <table className="area-detail-table">
         <tbody>
