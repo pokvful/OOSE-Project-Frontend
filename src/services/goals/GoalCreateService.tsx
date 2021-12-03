@@ -33,13 +33,13 @@ class GoalService implements IService<GoalDTO> {
         });
     }
 
-    update(value: GoalDTO): Promise<void> {
+    async update(value: GoalDTO): Promise<void> {
         return networkAdapter.put("goal", new GoalUpdateRequestDTO(value));
     }
-    create(value: GoalDTO): Promise<void> {
+    async create(value: GoalDTO): Promise<void> {
         return networkAdapter.post("goal", new GoalCreateRequestDTO(value));
     }
-    delete(id: number): Promise<void> {
+    async delete(id: number): Promise<void> {
         return networkAdapter.delete("goal/" + id);
     }
 }
