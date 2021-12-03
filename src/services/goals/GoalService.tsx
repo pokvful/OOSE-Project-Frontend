@@ -38,9 +38,8 @@ class GoalService implements IService<GoalDTO> {
         throw new Error("Method not implemented.");
     }
     delete(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return networkAdapter.delete("goals/" + id);
     }
-
 }
 
 export default GoalService;

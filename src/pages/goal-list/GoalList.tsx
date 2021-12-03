@@ -19,7 +19,8 @@ function GoalList() {
   }, [])
 
   const deleteGoal = (id: number) => {
-
+    setGoals(goals.filter(x => x.id !== id))
+    service.delete(id);
   }
 
   const search = () => {
