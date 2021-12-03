@@ -7,12 +7,10 @@ import GoalService from '../../services/goals/GoalService';
 
 function GoalDetail() {
   const [goal, setGoal] = useState({} as GoalDTO);
-  const [service, setService] = useState({} as GoalService);
 
   const params = useParams();
   useEffect(() => {
     const goalService = new GoalService();
-    setService(goalService)
     goalService.loadOne(id)
     .then(val => {
       setGoal(val);
