@@ -9,7 +9,7 @@
 .table-min-width {
     min-width: 200px;
 }
-h4 {
+.interventions > h4 {
     margin-bottom: 4px;
 }
 .interventions > p {

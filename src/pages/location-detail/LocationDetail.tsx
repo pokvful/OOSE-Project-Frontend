@@ -2,7 +2,7 @@ import './LocationDetail.css';
 import { useState, useEffect } from 'react';
 import LocationService from '../../services/location/LocationService';
 import LocationDTO from '../../dto/LocationDTO';
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 
 function LocationDetail() {
@@ -36,11 +36,11 @@ function LocationDetail() {
         <tbody>
           <tr>
             <td className="table-min-width">Gebied:</td>
-            <td><a onClick={() => navigate("/areas/" + location.area.id)}>{location.area.name}</a></td>
+            <td><Link to={"/areas/" + location.area.id}>{location.area.name}</Link></td>
           </tr>
           <tr>
             <td className="table-min-width">Franchise:</td>
-            <td><a onClick={() => navigate("/franchises/" + location.franchise.id)}>{location.franchise.name}</a></td>
+            <td><Link to={"/franchises/" + location.franchise.id}>{location.franchise.name}</Link></td>
           </tr>
           <tr>
             <td className="table-min-width">Lengtegraad:</td>
