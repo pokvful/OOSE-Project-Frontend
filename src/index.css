@@ -79,3 +79,7 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.page {
+  margin: 0 10%;
+}

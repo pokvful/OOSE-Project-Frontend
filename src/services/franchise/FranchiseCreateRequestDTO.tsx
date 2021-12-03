@@ -1,6 +1,6 @@
 import FranchiseDTO from "../../dto/FranchiseDTO";
 
-class FranchiseUpdateRequestDTO {
+class FranchiseCreateRequestDTO {
     name: String = "";
     
     constructor(franchiseDTO: FranchiseDTO) {
@@ -8,4 +8,4 @@ class FranchiseUpdateRequestDTO {
     };
 }
 
-export default FranchiseUpdateRequestDTO;
+export default FranchiseCreateRequestDTO;

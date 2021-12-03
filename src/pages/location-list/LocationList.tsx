@@ -28,7 +28,7 @@ function LocationList() {
   }
 
   return (
-    <div className="location-list">
+    <div className="page">
       <TopSection pageTitle={'Locaties'} buttonTitle={'Toevoegen'} navigationLink={'/locations/edit/0'} onClick={search}/>
         {locations.map(location => {
           return (

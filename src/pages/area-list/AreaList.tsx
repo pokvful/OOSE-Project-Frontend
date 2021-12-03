@@ -28,7 +28,7 @@ function AreaList() {
   }
 
   return (
-    <div className="area-list">
+    <div className="page">
       <TopSection pageTitle={'Gebieden'} buttonTitle={'Toevoegen'} navigationLink={'/areas/edit/0'} onClick={search}/>
         {areas.map(area => {
           return (
