@@ -28,7 +28,7 @@ function AreaDetail() {
 
   return (
     <div className="area-detail">
-      <DetailTopSection pageTitle={area.name} buttonTitle={'wijzigen'} navigationLink={'/areas/edit/' + area.id} subheading={'Gebieden'}/>
+      <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/areas/edit/' + area.id} subheading={'Gebieden'}/>
       <table className="area-detail-table">
         <tbody>
           <tr>

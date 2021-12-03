@@ -71,6 +71,14 @@ h5 {
   color: var(--wur-zwart);
 }
 
+a {
+  color: var(--wur-groen);
+}
+
+a:hover {
+  color: var(--wur-button-hover);
+}
+
 /* Input velden */
 
 input:focus,
