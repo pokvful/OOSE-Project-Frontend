@@ -61,12 +61,12 @@ const FranchiseEdit : React.FC = () => {
   }
 
   return (
-    <div className="franchise-edit-add">
+    <div>
       <h2>{isEdit ? franchise.name + " Wijzigen" : "Franchise aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={franchise.name} errors={errors.name}/>
         <br/>
-        <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
+        <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
     </div>
   );

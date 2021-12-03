@@ -21,7 +21,7 @@ function Components() {
     }
 
     return (
-        <div className="components">
+        <div>
 
             <h2>Components</h2>
 

@@ -27,7 +27,7 @@ function AreaDetail() {
   const id: number = Number.parseInt(params.id);
 
   return (
-    <div className="area-detail">
+    <div>
       <DetailTopSection pageTitle={area.name} buttonTitle={'Wijzigen'} navigationLink={'/areas/edit/' + area.id} subheading={'Gebieden'}/>
       <table className="area-detail-table">
         <tbody>

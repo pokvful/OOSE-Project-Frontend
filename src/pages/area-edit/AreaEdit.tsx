@@ -62,7 +62,7 @@ const AreaEdit : React.FC = () => {
   }
 
   return (
-    <div className="area-edit-add">
+    <div>
       <h2>{isEdit ? area.name + " Wijzigen" : "Gebied aanmaken"}</h2>
       <form onSubmit={onSubmit}>
         <Input placeholderText={'Naam'} inputName={'name'} inputType={'text'} inputLabel={'Naam'} onChange={handleChange} value={area.name} errors={errors.name}/>
@@ -73,7 +73,7 @@ const AreaEdit : React.FC = () => {
         <br/>
         <Input placeholderText={'Straal in meters'} inputName={'radius'} inputType={'number'} inputLabel={'Straal'} onChange={handleChange} value={area.radius === 0 ? "" : area.radius} errors={errors.radius}/>
         <br/>
-        <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
+        <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
     </div>
   );

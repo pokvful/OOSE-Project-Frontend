@@ -23,38 +23,40 @@ ReactDOM.render(
     <BrowserRouter>
     <Nav/>
     <ToastContainer />
-    <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/components" element={<Components/>}/>
-      <Route path="areas">
-        <Route index element={<AreaList/>}/>
-        <Route path=":id" element={<AreaDetail/>}/>
-        <Route path="edit/:id" element={<AreaEdit/>}/>
-      </Route>
-      <Route path="locations">
-        <Route index element={<LocationList />}/>
-        <Route path=":id" element={<LocationDetail />}/>
-        <Route path="edit/:id" element={<LocationEdit />}/>
-      </Route>
-      <Route path="franchises">
-        <Route index element={<FranchiseList />}/>
-        <Route path=":id" element={<FranchiseDetail />}/>
-        <Route path="edit/:id" element={<FranchiseEdit />}/>
-      </Route>
-      <Route path="goals">
-        <Route index element={<GoalList />}/>
-      </Route>
-      <Route
-      //todo 404
-        path="*"
-        element={
-          <main style={{ padding: "1rem" }}>
-            <h2>404 page not found</h2>
-            <p>There's nothing here!</p>  
-          </main>
-        }
-      />
-    </Routes>
+    <div className="page">
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/components" element={<Components/>}/>
+        <Route path="areas">
+          <Route index element={<AreaList/>}/>
+          <Route path=":id" element={<AreaDetail/>}/>
+          <Route path="edit/:id" element={<AreaEdit/>}/>
+        </Route>
+        <Route path="locations">
+          <Route index element={<LocationList />}/>
+          <Route path=":id" element={<LocationDetail />}/>
+          <Route path="edit/:id" element={<LocationEdit />}/>
+        </Route>
+        <Route path="franchises">
+          <Route index element={<FranchiseList />}/>
+          <Route path=":id" element={<FranchiseDetail />}/>
+          <Route path="edit/:id" element={<FranchiseEdit />}/>
+        </Route>
+        <Route path="goals">
+          <Route index element={<GoalList />}/>
+        </Route>
+        <Route
+        //todo 404
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <h2>404 page not found</h2>
+              <p>There's nothing here!</p>  
+            </main>
+          }
+        />
+      </Routes>
+      </div>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

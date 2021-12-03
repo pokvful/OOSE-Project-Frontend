@@ -130,7 +130,7 @@ function LocationEdit() {
   }
 
   return (
-    <div className="location-edit-add">
+    <div>
       <h2>{isEdit ? location.name + " Wijzigen" : "Locatie aanmaken"}</h2>
       <div className="fields-row">
       <form onSubmit={onSubmit}>
@@ -164,7 +164,7 @@ function LocationEdit() {
           <br/>
           <Input placeholderText={'Triggertijd in seconden'} inputName={'delay'} inputType={'number'} inputLabel={'Delay'} onChange={handleChange} value={location.radius === 0 ? "" : location.delay} errors={errors.delay}/>
           <br/>
-          <SubmitButton value={isEdit ? "Wijzig" : "Voeg toe"}/>
+          <SubmitButton value={isEdit ? "Opslaan" : "Voeg toe"}/>
       </form>
       <div className="column interventions">
         <form className="add-row" onSubmit={addIntervention}>

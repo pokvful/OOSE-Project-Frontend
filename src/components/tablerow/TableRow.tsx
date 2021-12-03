@@ -21,8 +21,8 @@ function TableRow({ title, subtitle="", onEditLink="", onDeleteClick, navigation
         <div className="table-row">
             <div className="table-row-grey-section" onClick={() => (navigationLink !== "" ? navigate(navigationLink!) : {})}>
                 <div className="left-section">
-                    <h4>{title}</h4>
-                    <h5>{subtitle}</h5>
+                    <h4 className="left-section-text">{title}</h4>
+                    <h5 className="left-section-text">{subtitle}</h5>
                 </div>
                 {navigationLink !== "" && <img src={ArrowIcon} alt="pijl" className="arrow-icon"/>}
             </div>

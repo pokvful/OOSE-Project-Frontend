@@ -28,7 +28,7 @@ function FranchiseList() {
   }
 
   return (
-    <div className="franchise-list">
+    <div>
       <TopSection pageTitle={'Franchises'} buttonTitle={'Toevoegen'} navigationLink={'/franchises/edit/0'} onClick={search}/>
         {franchises.map(franchise => {
           return (
