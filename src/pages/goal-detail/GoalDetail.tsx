@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import DetailTopSection from '../../components/detail-top-section/DetailTopSection';
 import GoalDTO from '../../dto/GoalDTO';
-import GoalService from '../../services/goals/GoalService';
+import GoalService from '../../services/goal/GoalService';
 
 function GoalDetail() {
   const [goal, setGoal] = useState({} as GoalDTO);
