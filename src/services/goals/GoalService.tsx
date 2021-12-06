@@ -1,6 +1,8 @@
 import networkAdapter from "../../adapters/NetworkAdapterFactory";
 import GoalDTO from "../../dto/GoalDTO";
 import IService from "../IService";
+import GoalCreateRequestDTO from "./GoalCreateRequestDTO";
+import GoalUpdateRequestDTO from "./GoalUpdateRequestDTO";
 
 class GoalService implements IService<GoalDTO> {
     async loadAll(): Promise<GoalDTO[]> {
@@ -31,15 +33,16 @@ class GoalService implements IService<GoalDTO> {
                 return toReturn;
             });
     }
-    update(value: GoalDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+    async   update(value: GoalDTO): Promise<void> {
+        return networkAdapter.put("goal", new GoalUpdateRequestDTO(value));
     }
-    create(value: GoalDTO): Promise<void> {
-        throw new Error("Method not implemented.");
+    async create(value: GoalDTO): Promise<void> {
+        return networkAdapter.post("goal", new GoalCreateRequestDTO(value));
     }
-    delete(id: number): Promise<void> {
-        return networkAdapter.delete("goals/" + id);
+    async delete(id: number): Promise<void> {
+        return networkAdapter.delete("goal/" + id);
     }
+
 }
 
 export default GoalService;
