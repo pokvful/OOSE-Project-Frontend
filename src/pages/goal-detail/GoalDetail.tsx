@@ -24,8 +24,8 @@ function GoalDetail() {
   const id: number = Number.parseInt(params.id);
 
   return (
-    <div className="goal-detail">
-      <DetailTopSection pageTitle={goal.name} buttonTitle={'Opslaan'} navigationLink={'/goals/edit/' + goal.id} subheading={'Doelstelling'}/>
+    <div>
+      <DetailTopSection pageTitle={goal.name} buttonTitle={'Wijzigen'} navigationLink={'/goals/edit/' + goal.id} subheading={'Doelstelling'}/>
     </div>
   );
 }
