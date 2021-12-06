@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import TopSection from '../../components/list-top-section/ListTopSection';
 import TableRow from '../../components/tablerow/TableRow';
 import GoalDTO from '../../dto/GoalDTO';
-import GoalService from '../../services/goals/GoalService';
+import GoalService from '../../services/goal/GoalService';
 
 function GoalList() {
   const [goals, setGoals] = useState([] as GoalDTO[]);
