@@ -28,7 +28,7 @@ function GoalList() {
   }
 
   return (
-    <div className="goal-list">
+    <div>
       <TopSection pageTitle={'Doelstellingen'} buttonTitle={'Toevoegen'} navigationLink={'/goals/edit/0'} onClick={search}/>
         {goals.map(goal => {
           return (
