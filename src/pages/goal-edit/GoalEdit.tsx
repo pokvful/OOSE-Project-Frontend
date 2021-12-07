@@ -21,7 +21,7 @@ const GoalEdit : React.FC = () => {
     if(!isEdit) {
       await service.create(goal)
         .then(() => {
-          toast.success("Goal aangemaakt!");
+          toast.success("Doelstelling aangemaakt!");
           navigate("/goals");
         }).catch(err => {
           setErrors(err.response.data);
@@ -31,7 +31,7 @@ const GoalEdit : React.FC = () => {
       await service
         .update(goal)
         .then(response => {
-          toast.success("Goal bijgewerkt!");
+          toast.success("Doelstelling bijgewerkt!");
           navigate("/goals");
         }).catch(err => {
           setErrors(err.response.data);
