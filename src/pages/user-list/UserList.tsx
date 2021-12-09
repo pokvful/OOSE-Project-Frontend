@@ -32,7 +32,7 @@ function UserList() {
         {users.map(user => {
           return (
             <div key={user.id}>
-              <TableRow title={user.username} subtitle="" onEditLink={"edit/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/users/" + user.id }/>
+              <TableRow title={user.username} subtitle={user.role.name} onEditLink={"edit/" + user.id} onDeleteClick={() => deleteUser(user.id)} navigationLink={ "/users/" + user.id }/>
             </div>
           )
         })}
