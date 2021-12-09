@@ -19,6 +19,8 @@ import FranchiseEdit from './pages/franchise-edit/FranchiseEdit';
 import GoalList from './pages/goal-list/GoalList';
 import GoalDetail from './pages/goal-detail/GoalDetail';
 import GoalEdit from './pages/goal-edit/GoalEdit';
+import UserList from './pages/user-list/UserList';
+import UserDetail from './pages/user-detail/UserDetail';
 
 
 ReactDOM.render(
@@ -49,6 +51,11 @@ ReactDOM.render(
           <Route index element={<GoalList />}/>
           <Route path=":id" element={<GoalDetail />}/>
           <Route path="edit/:id" element={<GoalEdit />}/>
+        </Route>
+        <Route path="users">
+          <Route index element={<UserList />}/>
+          <Route path=":id" element={<UserDetail />}/>
+          {/* <Route path="edit/:id" element={<UserEdit />}/> */}
         </Route>
         <Route
         //todo 404
